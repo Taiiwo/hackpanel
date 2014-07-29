@@ -9,6 +9,7 @@ $pluginOutput = $thisClass->update($searchTerm);
 
 //echo ouput
 $returnObj=array("last_updated"=>time(),
+				"update"=>$thisClass->update,
 				"markup"=>$pluginOutput,
 				"scripts"=>$thisClass->scripts)
 echo json_encode($returnObj);
