@@ -11,6 +11,7 @@ $pluginOutput = $thisClass->update($searchTerm);
 $returnObj=array("last_updated"=>time(),
 				"update"=>$thisClass->update,
 				"markup"=>$pluginOutput,
+			//	"scripts"=>file_get_contents("../../plugins/js/$className.js"),
 				"scripts"=>$thisClass->scripts);
 echo json_encode($returnObj);
 ?>
