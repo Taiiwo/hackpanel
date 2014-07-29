@@ -4,7 +4,7 @@ function appendPluginData(name){
 		{plugin:name},
 		function(data){
 			var markup=$("<div/>").addClass("plugin")
-				.append($("<h3/>").text(data.name))
+				.append($("<h3/>").text(data.title))
 				.append(data.markup);
 			$(".container").append(markup);
 		},
