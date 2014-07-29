@@ -1,9 +1,7 @@
 $(function(window,undefined){
-	$.ajax({
-		success:function(data){
+	$.post("api/get.php",
+		{plugin:"pluginTemplate"},
+		function(data){
 			$(".container").append(data.markup);
-		},
-		data:{plugin:"pluginTemplate"},
-		url:"api/get"
-	});
+		});
 });
