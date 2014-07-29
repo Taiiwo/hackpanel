@@ -6,7 +6,7 @@ require_once "../../plugins/" . $className . ".php";
 $thisClass = new $className;
 //run the class main() function
 print_r($thisClass);
-$pluginOutput = $thisClass->main($searchTerm);
+$pluginOutput = $thisClass->update($searchTerm);
 
 //echo ouput
 echo $pluginOutput;
