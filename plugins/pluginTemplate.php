@@ -1,5 +1,5 @@
 class pluginTemplate {
-	function main(){
+	function main(searchTerm){
 		return "<h1>LOL</h1>";
 	}
 }
