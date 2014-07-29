@@ -1,7 +1,12 @@
 <?php
+if (array_key_exists('searchTerm',$_POST)){
+	$searchTerm = preg_replace("/^\w{140}$/", "", $_POST['searchTerm']);
+}
+else {
+	$searchTerm = "yrs";
+}
 //import required function
 $className = preg_replace("/^\w{40}$/", "", $_POST['plugin']);
-$searchTerm = preg_replace("/^\w{140}$/", "", $_POST['searchTerm']);
 require_once "../../plugins/" . $className . ".php";
 $thisClass = new $className;
 //run the class main() function
