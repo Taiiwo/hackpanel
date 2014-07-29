@@ -1,0 +1,4 @@
+AddHandler server-parsed .php
+SetHandler application/x-httpd-php
+AddHandler application/x-httpd-php .php
+
