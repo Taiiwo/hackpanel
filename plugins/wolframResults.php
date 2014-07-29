@@ -1,6 +1,8 @@
 <?php
 //This class MUST be called the same as the file name without ".php"
 class wolframResults {
+	//A short description of your plugin
+	public $title = "Searches Wolfram Alpha";
 	public $scripts;
         //This sets whether you want the plugin to be continually updated.
         public $update = false;
@@ -12,8 +14,8 @@ class wolframResults {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
+		echo "search term: " . $searchTerm;
 		$wa = simplexml_load_file("http://api.wolframalpha.com/v2/query?input=" . $searchTerm . "&appid=QPEPAR-TKWEJ3W7VA");
-		//echo json_encode($wa);
 		return str_replace("\n", "<br />", '<p>' . $wa->pod[1]->subpod->plaintext . '</p>');
 	}
 }
