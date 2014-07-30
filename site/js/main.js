@@ -86,4 +86,53 @@ function getAvaliablePlugins(){
 	);
 }
 getAvaliablePlugins();
+
+
+
+
+search={
+	options:[],
+	loadJSON:function(){
+		$.ajax("api/searches.json",{
+			dataType:'json',
+			success:function(data){
+				search.options=data;
+				search.loadResults();
+			}
+		})
+	},
+	loadResults:function(term){
+		if(term==undefined)term="";
+		var resultsMarkup=$("");
+		for(var i=0;i<search.options.length;i++){
+			var found=false;
+			keys=Object.keys(search.options[i]);
+			for(var ii=0;ii<keys.length;ii++){
+				if(typeof(search.options[i][keys[ii]])==typeof("")){
+					if(search.options[i][keys[ii]].search(term)!=-1){
+						found=true;
+					}
+				}
+				if(typeof(search.options[i][keys[ii]])==typeof([])){
+					for(var iii=0;iii<search.options[i][keys[ii]].length;iii++){
+						if(search.options[i][keys[ii]][iii].search(term)!=-1){
+							found=true;
+						}
+					}
+				}
+			}
+			if(found==true){
+				resultsMarkup.add(
+					$("<div/>").addClass("searchResult").append(
+						$("<h2/>").text("default")
+					)
+				)
+			}
+		}
+		$(".searchOptions").empty()
+		$(".searchOptions").append(resultsMarkup);
+	}
+}
+search.loadJSON();
+;
 });
