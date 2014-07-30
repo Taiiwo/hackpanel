@@ -21,13 +21,13 @@ else {
 $thisClass = new $className;
 //run the class main() function
 $pluginOutput = $thisClass->update($searchTerm);
-
+//If the plugin doesn't want to be displayed:
+$returnObj = array("last_updated"=>time(),
+			"update"=>$thisClass->update,
+			"markup"=>$pluginOutput,
+			"title"=>$thisClass->title,
+		//	"scripts"=>file_get_contents("../../plugins/js/$className.js"),
+			"scripts"=>$thisClass->scripts);
 //echo ouput
-$returnObj=array("last_updated"=>time(),
-				"update"=>$thisClass->update,
-				"markup"=>$pluginOutput,
-				"title"=>$thisClass->title,
-			//	"scripts"=>file_get_contents("../../plugins/js/$className.js"),
-				"scripts"=>$thisClass->scripts);
 echo json_encode($returnObj);
 ?>
