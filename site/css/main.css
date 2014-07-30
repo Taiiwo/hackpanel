@@ -92,5 +92,5 @@ body {
 }
 
 #map-canvas {
-  min-height: 250px;
+  height: 250px;
 }
