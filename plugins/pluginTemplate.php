@@ -2,7 +2,7 @@
 //This class MUST be called the same as the file name without ".php"
 class pluginTemplate {
 	//A short description of your plugin
-	public title = "The Template Plugin";
+	public $title = "The Template Plugin";
 	public $scripts;
 	//This sets whether you want the plugin to be continually updated.
 	public $update = false;
