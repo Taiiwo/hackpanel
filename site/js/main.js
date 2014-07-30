@@ -67,6 +67,19 @@ plugin.prototype={
 					var markup=$("<div/>").addClass("plugin")
 						.append($("<h3/>").text(data.title))
 						.append(data.markup);
+					if(typeof(data.scripts)==typeof([])&data.scripts!=null){
+						for(var i=0;i<data.scripts.length;i++){
+							if(data.scripts[i].search("/^\/\*Injected\*\//")!=-1){
+								markup.append("<script type='text/javscript'>"+data.scripts[i]+"</script>");
+							}
+							else{
+								if($("head>script[src='"+data.scripts[i]+"']").length>0){
+									$("head>script[src='"+data.scripts[i]+"']").remove();
+								}
+								$("head").append($("<script type='text/javascript'>").attr("src",data.scripts[i]));
+							}
+						}
+					}
 					markup.replaceAll(this.markup());
 				},
 				type:"POST",

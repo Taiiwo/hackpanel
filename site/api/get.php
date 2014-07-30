@@ -18,20 +18,17 @@ if (file_exists("../../plugins/" . $className . ".php")) {
 else {
 	die("That plugin does not exist: $className.php");
 }
+$thisClass = new $className;
 //fetch javascript if exists
 if (file_exists("../../plugins/js/$className.js")){
-	$script = file_get_contents("../../plugins/js/$className.js");
+	$thisClass->scripts[] = "/*Injected*/".file_get_contents("../../plugins/js/$className.js");
 }
-else {
-	$script = NULL;
-}
-$thisClass = new $className;
 $pluginOutput = $thisClass->update($searchTerm);
 $returnObj = array("last_updated"=>time(),
 			"update"=>$thisClass->update,
 			"markup"=>$pluginOutput,
 			"title"=>$thisClass->title,
-			"scripts"=>$script);
+			"scripts"=>$thisClass->scripts);
 //echo ouput
 echo json_encode($returnObj);
 ?>
