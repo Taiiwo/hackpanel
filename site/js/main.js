@@ -67,15 +67,22 @@ plugin.prototype={
 					var markup=$("<div/>").addClass("plugin")
 						.append($("<h3/>").text(data.title))
 						.append(data.markup);
+					//If data.scripts is a non-null array
 					if(typeof(data.scripts)==typeof([])&data.scripts!=null){
+						//loop through each script
 						for(var i=0;i<data.scripts.length;i++){
+							//if /*Injected*/ is at the start of this array element
 							if(data.scripts[i].search("/^\/\*Injected\*\//")!=-1){
+								//Add the script to the HTML with script tags
 								markup.append("<script type='text/javscript'>"+data.scripts[i]+"</script>");
 							}
 							else{
+								//If the head has a script that has this item as a source
 								if($("head>script[src='"+data.scripts[i]+"']").length>0){
+									//remove it
 									$("head>script[src='"+data.scripts[i]+"']").remove();
 								}
+								//Now add it again...........
 								$("head").append($("<script type='text/javascript'>").attr("src",data.scripts[i]));
 							}
 						}
