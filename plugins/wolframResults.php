@@ -1,5 +1,4 @@
-<?php
-//This class MUST be called the same as the file name without ".php"
+<?php //This class MUST be called the same as the file name without ".php" 
 class wolframResults {
 	//A short description of your plugin
 	public $title = "Searches Wolfram Alpha";
@@ -15,7 +14,13 @@ class wolframResults {
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
 		$wa = simplexml_load_file("http://api.wolframalpha.com/v2/query?input=" . $searchTerm . "&appid=QPEPAR-TKWEJ3W7VA");
-		return str_replace("\n", "<br />", '<p>' . $wa->pod[1]->subpod->plaintext . '</p>');
+		/*
+		if ( $wa->pod[1]->subpod->plaintext == '' ){
+			return "null";
+		}
+		else {*/
+			return str_replace("\n", "<br />", '<p>' . $wa->pod[1]->subpod->plaintext . '</p>');
+		//}
 	}
 }
 ?>
