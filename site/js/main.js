@@ -130,7 +130,7 @@ search={
 	},
 	loadResults:function(term){
 		if(term==undefined)var term="";
-		var resultsMarkup=$("<div/>").addClass("search-options");
+		var resultsMarkup=$("<div/>").addClass("search-items");
 		for(var i=0;i<search.options.length;i++){
 			var found=false;
 			var keys=Object.keys(search.options[i]);
@@ -160,9 +160,9 @@ search={
 				individualResult.click(result,function(e){
 					hackathon=e.data;
 					$("#search").val(e.data.default);
-					$(".search-options").slideUp();
+					$(".search-items").slideUp();
 					$(".tiles").fadeIn(500);
-					$("#search").focus(function(){$(".search-options").slideDown()});
+					$("#search").focus(function(){$(".search-items").slideDown()});
 					for(var i=0;i<plugins.length;i++){
 						plugins[i].get();
 					}
@@ -170,7 +170,7 @@ search={
 				resultsMarkup.append(individualResult);
 			}
 		}
-		resultsMarkup.replaceAll($(".search-options"));
+		resultsMarkup.replaceAll($(".search-items"));
 	}
 }
 search.loadJSON();

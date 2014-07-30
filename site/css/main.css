@@ -77,6 +77,23 @@ body {
   margin: 5px;
 }
 
+.searchResult:nth-child(2n) {
+    background-color: #E8E8E8;
+}
+
+.searchResult {
+  padding: 15px 20px;
+  font-family: 'Roboto';
+}
+
+.searchResult h2 {
+  font-weight: bold;
+}
+
+.searchResult span {
+  padding-right: 10px;
+}
+
 #main-content {
   margin-top: 40px;
 }
