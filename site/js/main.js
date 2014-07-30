@@ -6,7 +6,7 @@ function appendPluginData(name){
 			var markup=$("<div/>").addClass("plugin")
 				.append($("<h3/>").text(data.title))
 				.append(data.markup);
-			$(".container").append(markup);
+			$(".tiles").append(markup);
 		},
 		'json'
 	);

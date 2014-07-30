@@ -1,0 +1,81 @@
+html,
+body {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+body {
+  width: 100%;
+}
+
+#top-bar {
+  height: 150px;
+  background-color: #e00032;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: block;
+  float: none;
+}
+
+.logo {
+  font-family: 'Titan One';
+  font-weight: normal;
+  color: #ffffff;
+  text-align: center;
+  padding: 28px;
+  font-size: 64px;
+}
+
+#header-elements {
+  margin: 0 auto;
+  max-width: 960px;
+  display: block;
+  float: none;
+}
+
+#search {
+  width: 720px;
+  height: 35px;
+  font-size: 20px;
+  font-family: 'Roboto';
+  padding: 0px 10px;
+  margin: 0px 30px;
+  border: none;
+  color: #7f8c8d;
+  box-shadow: 0px 5px 10px #7f8c8d;
+  display: inline;
+}
+
+#settings-button {
+  background-color: #03a9f4;
+  box-shadow: 0px 5px 10px #7f8c8d;
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  color: #ffffff;
+  padding: 3px;
+  width: 30px;
+  height: 30px;
+  float: right;
+  margin-right: 20px;
+}
+
+#settings-button img {
+  height: 20px;
+  margin: 5px;
+}
+
+#main-content {
+  margin-top: 40px;
+}
