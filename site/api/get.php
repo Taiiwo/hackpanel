@@ -3,7 +3,7 @@ if (array_key_exists('searchTerm',$_POST) && $_POST['searchTerm'] != ''){
 	$searchTerm = preg_replace("/^\w{140}$/", "", $_POST['searchTerm']);
 }
 else {
-	$searchTerm = "yrs";
+	$searchTerm = "Young Rewired State";
 }
 //import required function
 if (array_key_exists('plugin',$_POST) && $_POST['plugin'] != ''){
@@ -18,16 +18,19 @@ if (file_exists("../../plugins/" . $className . ".php")) {
 else {
 	die("That plugin does not exist: $className.php");
 }
-$thisClass = new $className;
-//run the class main() function
+//fetch javascript if exists
+if (file_exists("../../plugins/js/$className.js")){
+	$script = file_get_contents("../../plugins/js/$className.js");
+}
+else {
+	$script = NULL;
+}
 $pluginOutput = $thisClass->update($searchTerm);
-//If the plugin doesn't want to be displayed:
 $returnObj = array("last_updated"=>time(),
 			"update"=>$thisClass->update,
 			"markup"=>$pluginOutput,
 			"title"=>$thisClass->title,
-		//	"scripts"=>file_get_contents("../../plugins/js/$className.js"),
-			"scripts"=>$thisClass->scripts);
+			"scripts"=>$script);
 //echo ouput
 echo json_encode($returnObj);
 ?>
