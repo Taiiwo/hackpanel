@@ -102,11 +102,11 @@ search={
 		})
 	},
 	loadResults:function(term){
-		if(term==undefined)term="";
-		var resultsMarkup=$("");
+		if(term==undefined)var term="";
+		var resultsMarkup=$("<div/>").addClass("search-options");
 		for(var i=0;i<search.options.length;i++){
 			var found=false;
-			keys=Object.keys(search.options[i]);
+			var keys=Object.keys(search.options[i]);
 			for(var ii=0;ii<keys.length;ii++){
 				if(typeof(search.options[i][keys[ii]])==typeof("")){
 					if(search.options[i][keys[ii]].search(term)!=-1){
@@ -122,15 +122,18 @@ search={
 				}
 			}
 			if(found==true){
-				resultsMarkup.add(
-					$("<div/>").addClass("searchResult").append(
-						$("<h2/>").text("default")
+				var result=search.options[i];
+				var individualResult=$("<div/>").addClass("searchResult").append(
+						$("<h2/>").text(result.default)
+					).append(
+						$("<span/>").addClass("dates").text(result.startDate+"-"+result.endDate)
+					).append(
+						$("<span/>").addClass("description").text(result.description)
 					)
-				)
+				resultsMarkup.append(individualResult);
 			}
 		}
-		$(".searchOptions").empty()
-		$(".searchOptions").append(resultsMarkup);
+		resultsMarkup.replaceAll($(".search-options"));
 	}
 }
 search.loadJSON();
