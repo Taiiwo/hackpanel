@@ -25,6 +25,7 @@ if (file_exists("../../plugins/js/$className.js")){
 else {
 	$script = NULL;
 }
+$thisClass = new $className;
 $pluginOutput = $thisClass->update($searchTerm);
 $returnObj = array("last_updated"=>time(),
 			"update"=>$thisClass->update,
