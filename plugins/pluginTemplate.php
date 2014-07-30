@@ -14,7 +14,7 @@ class pluginTemplate {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
-		return "<h1>LOL</h1>";
+		return "<h1>The user searched for $searchTerm</h1>";
 	}
 }
 ?>

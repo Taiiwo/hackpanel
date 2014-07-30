@@ -15,7 +15,12 @@ class wolframResults {
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
 		$wa = simplexml_load_file("http://api.wolframalpha.com/v2/query?input=" . $searchTerm . "&appid=QPEPAR-TKWEJ3W7VA");
-		return str_replace("\n", "<br />", '<p>' . $wa->pod[1]->subpod->plaintext . '</p>');
+		if (!$wa){
+			return "null";
+		}
+		else {
+			return str_replace("\n", "<br />", '<p>' . $wa->pod[1]->subpod->plaintext . '</p>');
+		}
 	}
 }
 ?>
