@@ -1,12 +1,28 @@
 [
 	{
-		"default": "Young Reqired State",
+		"default": "Young Rewired State",
 		"irc": "#yrs",
+		"description": "An event.",
+		"startDate": "28/07/2014",
+		"endDate": "3/08/2014",
 		"twitterAccount": "@youngrewired",
 		"twitterHashtags": [
 			"#yrsfoc",
 			"#yrs2014"
-		],
-		"ircChannel": "#yrs"
+		]
+	}
+]
+
+[
+	{
+		"default": "Back to School Hack",
+		"irc": "#b2c",
+		"description": "An event.",
+		"start-date": "29/08/2014",
+		"end-date": "5/09/2014",
+		"twitterAccount": "@back2schoolhack",
+		"twitterHashtags": [
+			"#b2chack"
+		]
 	}
 ]
