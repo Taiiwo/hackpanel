@@ -25,7 +25,7 @@ plugin.prototype={
 			this.name=name;
 			return this;
 		}
-	}
+	},
 	url:function(url){
 		if(url==undefined){
 			return this.url;
@@ -34,7 +34,7 @@ plugin.prototype={
 			this.url=url;
 			return this;
 		}
-	}
+	},
 	update:function(update){
 		if(name==undefined){
 			return this.update;
@@ -43,7 +43,7 @@ plugin.prototype={
 			this.update=update;
 			return this;
 		}
-	}
+	},
 	markup:function(markup){
 		if(markup==undefined){
 			return this.markup
@@ -61,7 +61,7 @@ function appendPluginData(name){
 			var markup=$("<div/>").addClass("plugin")
 				.append($("<h3/>").text(data.title))
 				.append(data.markup);
-			$(".tiles").append(markup);
+			$(".container").append(markup);
 		},
 		'json'
 	);
