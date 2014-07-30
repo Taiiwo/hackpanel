@@ -4,7 +4,7 @@
 		"irc": "#yrs",
 		"description": "An event.",
 		"startDate": "28/07/2014",
-		"endDate": "3/08/2014",
+		"endDate": "03/08/2014",
 		"twitterAccount": "@youngrewired",
 		"twitterHashtags": [
 			"#yrsfoc",
@@ -12,14 +12,14 @@
 		]
 	},
 	{
-		"default": "Back to School Hack",
-		"irc": "#b2c",
+		"default": "Test Hack",
+		"irc": "#test",
 		"description": "An event.",
-		"start-date": "29/08/2014",
-		"end-date": "5/09/2014",
-		"twitterAccount": "@back2schoolhack",
+		"start-date": "25/12/2014",
+		"end-date": "01/01/2015",
+		"twitterAccount": "@testHack",
 		"twitterHashtags": [
-			"#b2chack"
+			"#testhack"
 		]
 	}
 ]
