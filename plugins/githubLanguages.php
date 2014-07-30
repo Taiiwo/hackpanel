@@ -14,13 +14,35 @@ class githubLanguages {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
-		$array = json_decode(get_file_contents('https://api.github.com/search/repositories?q=Tetris&sort=stars&order=desc'));
-		return;
+		$query = urlencode('yrs');
+		$url = "https://api.github.com/search/repositories?q=$query&sort=updated&order=desc";
+		//Begin messy curl (This is the equivalent of $content = file_get_contents($url);, but with a useragent)
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_USERAGENT, "The Hack Dash App");
+		$content = curl_exec($ch);
+		curl_close($ch);
+		//End messy curl
+		$array = json_decode($content);
 		$langCount = array();
-		foreach ($array[$items] as $item) {
-			$langCount->push($item['language']);
+		foreach ($array->items as $item) {
+			if ($item->language != NULL) {//[bug] also check the date they were created with ->created_at
+				if (array_key_exists($item->language, $langCount)){//if the language of the current item
+										//is already in the language counter
+					$langCount[$item->language] += 1;
+				}
+				else{
+					//append it to the array
+					$langCount[$item->language] = 1;
+				}
+			}
 		}
-		
+		$toRet = "";
+		foreach ($langCount as $language => $count){
+			$toRet .= "$language: $count <br />";
+		}
+		return $toRet;
 	}
 }
 ?>
