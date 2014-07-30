@@ -1,6 +1,7 @@
 $(function(window,undefined){
 var hackathon={};//options for the selected hackathon
 var plugins=[];
+$(".tiles").fadeOut(10);
 plugins.add=function(plugin){
 	for(var i=0;i<plugins.length;i++){
 		if(plugin.id==plugins[i].id){
@@ -58,7 +59,10 @@ plugin.prototype={
 	get:function(){
 		$.ajax("api/get.php",
 			{
-				data:{plugin:this.url()},
+				data:{
+					plugin:this.url(),
+					searchTerm:this.searchTerm()
+				},
 				success:function(data){
 					var markup=$("<div/>").addClass("plugin")
 						.append($("<h3/>").text(data.title))
@@ -70,6 +74,15 @@ plugin.prototype={
 				context:this
 			}
 		);
+	},
+	searchTerm:function(term){
+		if(term==undefined){
+			return this.props.searchTerm;
+		}
+		else{
+			this.props.searchTerm=term;
+			return this;
+		}
 	}
 }
 function getAvaliablePlugins(){
@@ -133,7 +146,13 @@ search={
 					)
 				individualResult.click(result,function(e){
 					hackathon=e.data;
-					$("#search").val(e.data.default)
+					$("#search").val(e.data.default);
+					$(".search-options").slideUp();
+					$(".tiles").fadeIn(500);
+					$("#search").focus(function(){$(".search-options").slideDown()});
+					for(var i=0;i<plugins.length;i++){
+						plugins[i].get();
+					}
 				})
 				resultsMarkup.append(individualResult);
 			}
