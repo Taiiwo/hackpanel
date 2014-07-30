@@ -137,5 +137,9 @@ search={
 	}
 }
 search.loadJSON();
-;
+$("#search").bind('input',function(){
+	search.loadResults(this.value);
+});
+
+
 });
