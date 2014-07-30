@@ -1,4 +1,5 @@
 $(function(window,undefined){
+var hackathon={};//options for the selected hackathon
 var plugins=[];
 plugins.add=function(plugin){
 	for(var i=0;i<plugins.length;i++){
@@ -130,6 +131,10 @@ search={
 					).append(
 						$("<span/>").addClass("description").text(result.description)
 					)
+				individualResult.click(result,function(e){
+					hackathon=e.data;
+					$("#search").val(e.data.default)
+				})
 				resultsMarkup.append(individualResult);
 			}
 		}
@@ -140,6 +145,5 @@ search.loadJSON();
 $("#search").bind('input',function(){
 	search.loadResults(this.value);
 });
-
 
 });
