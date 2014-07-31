@@ -6,6 +6,7 @@ class twitterPlugin {
 	public $scripts;
 	//This sets whether you want the plugin to be continually updated.
 	public $update = true;
+	public $categories=["twitterAccount","twitterHashtags"];
 	// This function is run once at plugin initialisation
 	// External calls to APIs where the data should not change
 	// should be run here to help reduce update time.
@@ -14,6 +15,7 @@ class twitterPlugin {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
+		$aliases=getSearchAlias($searchTerm,$this->categories);
 		return '
 <a class="twitter-timeline" href="https://twitter.com/hashtag/YRSFoC" data-widget-id="494093261502312451">#YRSFoC Tweets</a>
 <script>
@@ -27,6 +29,8 @@ class twitterPlugin {
 			fjs.parentNode.insertBefore(js, fjs);
 		}
 	}(document,"script","twitter-wjs");
+	hashtags='.json_encode($aliases['twitterHashtags']).';
+	account='.json_encode($aliases['twitterAccount']).';
 	twttr.widgets.load($(".twitterPlugin")[0]);
 </script>
 ';

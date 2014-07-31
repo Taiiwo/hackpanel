@@ -1,6 +1,7 @@
 <?php
 function getSearchAlias($term,$keys){
-	$hackathonsJSON=file_get_contents("../site/api/searches.json");
+	if(!file_exists("../../site/api/searches.json"))die("couldn't find json");
+	$hackathonsJSON=file_get_contents("../../site/api/searches.json");
 	$hackathons=json_decode($hackathonsJSON,true);
 	foreach ($hackathons as $hackathon){
 		if ($hackathon["default"]==$term){

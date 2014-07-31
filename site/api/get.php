@@ -34,6 +34,7 @@ function format_error( $errno, $errstr, $errfile, $errline ) {
 function error_display($e){
 	die("This plugin is broken: " . $e);
 }
+require_once "../../lib/searchTerm.php";
 if (array_key_exists('searchTerm',$_POST) && $_POST['searchTerm'] != ''){
 	$searchTerm = preg_replace("/^\w{140}$/", "", $_POST['searchTerm']);
 }
