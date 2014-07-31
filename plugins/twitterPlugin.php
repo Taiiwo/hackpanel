@@ -2,7 +2,7 @@
 //This class MUST be called the same as the file name without ".php"
 class twitterPlugin {
 	//A short description of your plugin
-	public $title = "TwitterPlugin";
+	public $title = "Twitter Plugin";
 	public $scripts;
 	//This sets whether you want the plugin to be continually updated.
 	public $update = true;
@@ -27,6 +27,7 @@ class twitterPlugin {
 			fjs.parentNode.insertBefore(js, fjs);
 		}
 	}(document,"script","twitter-wjs");
+	twttr.widgets.load($(".twitterPlugin")[0]);
 </script>
 ';
 	}
