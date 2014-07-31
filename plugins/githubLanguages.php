@@ -54,7 +54,7 @@ class githubLanguages {
 			}
 		}
 		$arrayData = json_encode($langCount);
-		return '<div id="piechart" ></div>
+		return '<div id="piechart" style="height: 250px;"></div>
     <script type="text/javascript">
 drawChart();
 function drawChart() {
