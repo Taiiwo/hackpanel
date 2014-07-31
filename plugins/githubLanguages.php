@@ -62,6 +62,16 @@ function drawChart() {
         var data = google.visualization.arrayToDataTable('. $arrayData .');
 
         var options = {
+	  chartArea: {left: 10, right: 10,  width: "90%", height: "90%", top: 10, bottom: 10},
+	  legend: \'none\',//Omit this line and re-add the next two to put the legends back
+		/*
+	  legend: {textStyle: {color: "white", fontSize: 14}},
+	  titleTextStyle: {color: "white"},
+		*/
+	  pieHole: 0.333,
+          pieSliceText: \'label\',
+	  backgroundColor: \'transparent\',
+          title: \'Number of languages used by YRS projects on Github\'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));

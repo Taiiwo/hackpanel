@@ -28,9 +28,8 @@ function initialize() {
     map: map,
     title:"Festival of Code 2014"
 	});
-
-
 }
+
 initialize();
 </script>';
 	}
