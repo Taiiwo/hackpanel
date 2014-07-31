@@ -13,6 +13,7 @@ class wolframResults {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
+		$searchTerm = "hackathon";
 		$wa = simplexml_load_file("http://api.wolframalpha.com/v2/query?input=" . $searchTerm . "&appid=QPEPAR-TKWEJ3W7VA");
 		if (!$wa){
 			return "null";

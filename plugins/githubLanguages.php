@@ -12,7 +12,7 @@ function recursive_array_search($needle,$haystack) {
 class githubLanguages {
 	//A short description of your plugin
 	public $title = "Github";
-	public $scripts = ["https://www.google.com/jsapi"];
+	public $scripts = array("https://www.google.com/jsapi");
 	//This sets whether you want the plugin to be continually updated.
 	public $update = false;
 	// This function is run once at plugin initialisation

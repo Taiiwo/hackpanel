@@ -3,7 +3,7 @@
 class pluginTemplate {
 	//A short description of your plugin
 	public $title = "The Template Plugin";
-	public $scripts=["js/hi.js"];
+	public $scripts=array();
 	//This sets whether you want the plugin to be continually updated.
 	public $update = false;
 	// This function is run once at plugin initialisation
