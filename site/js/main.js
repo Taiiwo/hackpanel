@@ -66,9 +66,11 @@ plugin.prototype={
 					searchTerm:hackathon.default
 				},
 				success:function(data){
-					var markup=$("<div/>").addClass("plugin")
+					var markup=$("<div/>").addClass("plugin").addClass(this.url())
 						.append($("<h3/>").text(data.title))
 						.append(data.markup);
+					this.markup().empty()
+					this.markup().append(markup.contents());
 					//If data.scripts is a non-null array
 					if(typeof(data.scripts)==typeof([])&data.scripts!=null){
 						//loop through each script
@@ -86,8 +88,6 @@ plugin.prototype={
 							}
 						}
 					}
-					this.markup().empty()
-					this.markup().append(markup.contents());
 				},
 				type:"POST",
 				dataType:"json",
@@ -101,7 +101,7 @@ function getAvaliablePlugins(){
 		{},
 		function(data){
 			for(var i=0;i<data.length;i++){
-				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin")});
+				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin").addClass(data[i])});
 				$(".tiles").append(toAdd.markup());
 				plugins.add(toAdd);
 				toAdd.get();
@@ -149,12 +149,14 @@ search={
 			if(found==true){
 				var result=search.options[i];
 				var individualResult=$("<div/>").addClass("searchResult").append(
-						$("<h2/>").text(result.default)
-					).append(
-						$("<span/>").addClass("dates").text(result.startDate+"-"+result.endDate)
-					).append(
-						$("<span/>").addClass("description").text(result.description)
-					)
+						$("<div><div/></div>").find('div').append(
+							$("<h2/>").text(result.default)
+							).append(
+								$("<span/>").addClass("dates").text(result.startDate+"-"+result.endDate)
+							).append(
+								$("<span/>").addClass("description").text(result.description)
+							)
+						);
 				individualResult.click(result,function(e){
 					hackathon=e.data;
 					$("#search").val(e.data.default);
