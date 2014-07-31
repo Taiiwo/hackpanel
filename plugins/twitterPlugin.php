@@ -17,7 +17,7 @@ class twitterPlugin {
 	function update($searchTerm){
 		$aliases=getSearchAlias($searchTerm,$this->categories);
 		return '
-<a class="twitter-timeline" href="https://twitter.com/hashtag/YRSFoC" data-widget-id="494093261502312451">#YRSFoC Tweets</a>
+<div class="twitter-timeline" href="https://twitter.com/hashtag/YRSFoC" data-widget-id="494093261502312451"></div>
 <script>
 	! function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0],
@@ -31,7 +31,13 @@ class twitterPlugin {
 	}(document,"script","twitter-wjs");
 	hashtags='.json_encode($aliases['twitterHashtags']).';
 	account='.json_encode($aliases['twitterAccount']).';
-	twttr.widgets.load($(".twitterPlugin")[0]);
+	twttr.widgets.createTimeline(
+		"494093261502312451",
+		document.getElementsByClassName("twitter-timeline")[0],
+		{
+			hashtags:hashtags
+		}
+	);
 </script>
 ';
 	}
