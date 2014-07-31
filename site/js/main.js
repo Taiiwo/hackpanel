@@ -71,6 +71,9 @@ plugin.prototype={
 						.append(data.markup);
 					this.markup().empty()
 					this.markup().append(markup.contents());
+					if ( data.style != 'null' ) {
+						$("head").append("<style type='text/css'>"+data.style+"</style>");
+					}
 					//If data.scripts is a non-null array
 					if(typeof(data.scripts)==typeof([])&data.scripts!=null){
 						//loop through each script

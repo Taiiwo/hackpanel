@@ -1,0 +1,8 @@
+.mapPlugin {
+  width: 610px;
+}
+
+#map-canvas {
+  width: 610px;
+  height: 265px;
+}
