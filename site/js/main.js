@@ -67,8 +67,8 @@ plugin.prototype={
 				},
 				success:function(data){
 					var markup=$("<div/>").addClass("plugin").addClass(this.url())
-						.append($("<h3/>").text(data.title))
 						.append(data.markup);
+					$('.' + this.url()).attr('title',data.title);
 					this.markup().empty()
 					this.markup().append(markup.contents());
 					if ( data.style != 'null' ) {
