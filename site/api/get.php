@@ -59,11 +59,18 @@ $thisClass = new $className;
 if (file_exists("../../plugins/js/$className.js")){
 	$thisClass->scripts[] = "/*Injected*/\n".file_get_contents("../../plugins/js/$className.js");
 }
+if (file_exists("../../plugins/css/$className.css")){
+	$style = file_get_contents("../../plugins/css/$className.css");
+}
+else {
+	$style = NULL;
+}
 $pluginOutput = $thisClass->update($searchTerm);
 $returnObj = array("last_updated"=>time(),
 			"update"=>$thisClass->update,
 			"markup"=>$pluginOutput,
 			"title"=>$thisClass->title,
+			"style"=>$style,
 			"scripts"=>$thisClass->scripts);
 //echo ouput
 echo json_encode($returnObj);
