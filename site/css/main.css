@@ -81,20 +81,23 @@ body {
 }
 
 .searchResult:nth-child(2n) {
-    background-color: #E8E8E8;
+    background-color: #EDEDED
 }
 
 .searchResult {
   width:100%;
   padding: 15px 20px;
+  color: #2c3e50;
   font-family: 'Roboto';
 }
-.searchResult > div{
+
+.searchResult > div {
   max-width:960px;
   margin:0 auto;
   display: block;
   float:none;
 }
+
 .searchResult h2 {
   font-weight: bold;
 }
