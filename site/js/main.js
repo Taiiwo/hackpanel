@@ -86,9 +86,8 @@ plugin.prototype={
 							}
 						}
 					}
-					this.markup().parent().append(markup);
-					this.markup().remove();
-					this.markup(markup);
+					this.markup().empty()
+					this.markup().append(markup.contents());
 				},
 				type:"POST",
 				dataType:"json",
