@@ -63,7 +63,7 @@ if (file_exists("../../plugins/css/$className.css")){
 	$style = file_get_contents("../../plugins/css/$className.css");
 }
 else {
-	$style = "";
+	$style = "null";
 }
 $pluginOutput = $thisClass->update($searchTerm);
 $returnObj = array("last_updated"=>time(),
