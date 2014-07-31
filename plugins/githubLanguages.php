@@ -22,7 +22,8 @@ class githubLanguages {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
-		$query = urlencode('yrs');
+		require_once '../../lib/searchTerm.php';
+		$query = urlencode( getSearchAlias($searchTerm, array('irc'))['irc'] );
 		$url = "https://api.github.com/search/repositories?q=$query&sort=updated&order=desc";
 		//Begin messy curl (This is the equivalent of $content = file_get_contents($url);, but with a useragent)
 		$ch = curl_init();
@@ -62,7 +63,8 @@ function drawChart() {
         var data = google.visualization.arrayToDataTable('. $arrayData .');
 
         var options = {
-	  chartArea: {left: 0, right: 0,  width: "100%", height: "100%", top: 20, bottom: 0},
+	  chartArea: {left: 0, right: 0,  width: "100%", height: "80%", top: 30, bottom: 10},
+	  height: 290,
 	  legend: \'none\',//Omit this line and re-add the next two to put the legends back
 		/*
 	  legend: {textStyle: {color: "white", fontSize: 14}},
@@ -70,7 +72,7 @@ function drawChart() {
 		*/
 	  pieHole: 0.333,
           pieSliceText: \'label\',
-	  backgroundColor: \'transparent\'
+	  backgroundColor: \'white\'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));
