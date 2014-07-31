@@ -85,10 +85,16 @@ body {
 }
 
 .searchResult {
+  width:100%;
   padding: 15px 20px;
   font-family: 'Roboto';
 }
-
+.searchResult>div{
+  max-width:960px;
+  margin:0 auto;
+  display: block;
+  float:none;
+}
 .searchResult h2 {
   font-weight: bold;
 }
