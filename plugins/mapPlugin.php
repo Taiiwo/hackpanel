@@ -16,19 +16,18 @@ class mapPlugin {
 	function update($searchTerm){
 		return '<div id="map-canvas"/><script>
 function initialize() {
-  var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+	var latLong = new google.maps.LatLng(50.375715, -4.139280);
   var mapOptions = {
-    zoom: 4,
-    disableDefaultUI: true,
-    center: myLatlng
-  }
-  var map = new google.maps.Map(document.getElementById(\'map-canvas\'), mapOptions);
-
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: \'Hello World!\'
-  });
+    zoom: 17,
+    center: latLong
+  };
+	var map = new google.maps.Map(document.getElementById(\'map-canvas\'),
+			mapOptions);
+	var marker = new google.maps.Marker({
+    position: latLong,
+    map: map,
+    title:"Festival of Code 2014"
+	});
 }
 
 initialize();
