@@ -57,7 +57,7 @@ else {
 $thisClass = new $className;
 //fetch javascript if exists
 if (file_exists("../../plugins/js/$className.js")){
-	$thisClass->scripts[] = "/*Injected*/".file_get_contents("../../plugins/js/$className.js");
+	$thisClass->scripts[] = "/*Injected*/\n".file_get_contents("../../plugins/js/$className.js");
 }
 $pluginOutput = $thisClass->update($searchTerm);
 $returnObj = array("last_updated"=>time(),
