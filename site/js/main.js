@@ -4,10 +4,12 @@ var plugins=[];
 $(".tiles").fadeOut(10);
 plugins.add=function(plugin){
 	for(var i=0;i<plugins.length;i++){
-		if(plugin.id==plugins[i].id){
-			plugins[i]==plugin;
+		if(plugin.url()==plugins[i].url()){
+			plugins[i]=plugin;
+			return;
 		}
 	}
+	plugins.push(plugin);
 }
 plugin=function(properties){
 	if(properties!=undefined){
@@ -61,7 +63,7 @@ plugin.prototype={
 			{
 				data:{
 					plugin:this.url(),
-					searchTerm:this.searchTerm()
+					searchTerm:hackathon.default
 				},
 				success:function(data){
 					var markup=$("<div/>").addClass("plugin")
@@ -72,32 +74,27 @@ plugin.prototype={
 						//loop through each script
 						for(var i=0;i<data.scripts.length;i++){
 							//if /*Injected*/ is at the start of this array element
-							if(data.scripts[i].match("\^..Injected") != null){
+							if(data.scripts[i].match(/\/\*Injected\*\//) != null){
 								//Add the script to the HTML with script tags
 								$("head").append("<script type='text/javscript'>"+data.scripts[i]+"</script>");
 							}
 							else{
-								//Now add it again...........
-								$("head").append($("<script type='text/javascript'>").attr("src",data.scripts[i]));
+								if($("head>script[src='"+data.scripts[i]+"']").length<0){
+ 									//only add if if doen't exist
+									$("head").append($("<script type='text/javascript'>").attr("src",data.scripts[i]));
+ 								}
 							}
 						}
 					}
-					markup.replaceAll(this.markup());
+					this.markup().parent().append(markup);
+					this.markup().remove();
+					this.markup(markup);
 				},
 				type:"POST",
 				dataType:"json",
 				context:this
 			}
 		);
-	},
-	searchTerm:function(term){
-		if(term==undefined){
-			return this.props.searchTerm;
-		}
-		else{
-			this.props.searchTerm=term;
-			return this;
-		}
 	}
 }
 function getAvaliablePlugins(){
