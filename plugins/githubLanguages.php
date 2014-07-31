@@ -22,7 +22,8 @@ class githubLanguages {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
-		$query = urlencode('yrs');
+		require_once '../../lib/searchTerm.php';
+		$query = urlencode( getSearchAlias($searchTerm, array('irc'))['irc'] );
 		$url = "https://api.github.com/search/repositories?q=$query&sort=updated&order=desc";
 		//Begin messy curl (This is the equivalent of $content = file_get_contents($url);, but with a useragent)
 		$ch = curl_init();
