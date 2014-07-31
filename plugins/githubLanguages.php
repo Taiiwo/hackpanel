@@ -70,7 +70,7 @@ function drawChart() {
 		*/
 	  pieHole: 0.333,
           pieSliceText: \'label\',
-	  backgroundColor: \'transparent\',
+	  backgroundColor: \'white\',
           title: \'Number of languages used by YRS projects on Github\'
         };
 
