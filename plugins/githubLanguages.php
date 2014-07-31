@@ -62,7 +62,8 @@ function drawChart() {
         var data = google.visualization.arrayToDataTable('. $arrayData .');
 
         var options = {
-	  chartArea: {left: 0, right: 0,  width: "100%", height: "100%", top: 20, bottom: 0},
+	  chartArea: {left: 0, right: 0,  width: "100%", height: "95%", top: 7, bottom: 10},
+	  height: 290,
 	  legend: \'none\',//Omit this line and re-add the next two to put the legends back
 		/*
 	  legend: {textStyle: {color: "white", fontSize: 14}},
@@ -70,7 +71,7 @@ function drawChart() {
 		*/
 	  pieHole: 0.333,
           pieSliceText: \'label\',
-	  backgroundColor: \'transparent\'
+	  backgroundColor: \'white\'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));
