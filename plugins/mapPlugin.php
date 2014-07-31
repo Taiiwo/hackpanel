@@ -15,14 +15,21 @@ class mapPlugin {
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
 		return '<div id="map-canvas"/><script>
-var map;
 function initialize() {
+	var latLong = new google.maps.LatLng(50.375715, -4.139280);
   var mapOptions = {
-    zoom: 8,
-    center: new google.maps.LatLng(-34.397, 150.644)
+    zoom: 17,
+    center: latLong
   };
-  map = new google.maps.Map(document.getElementById(\'map-canvas\'),
-      mapOptions);
+	var map = new google.maps.Map(document.getElementById(\'map-canvas\'),
+			mapOptions);
+	var marker = new google.maps.Marker({
+    position: latLong,
+    map: map,
+    title:"Festival of Code 2014"
+	});
+
+
 }
 initialize();
 </script>';

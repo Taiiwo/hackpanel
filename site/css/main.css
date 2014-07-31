@@ -89,7 +89,7 @@ body {
   padding: 15px 20px;
   font-family: 'Roboto';
 }
-.searchResult>div{
+.searchResult > div{
   max-width:960px;
   margin:0 auto;
   display: block;
@@ -126,8 +126,4 @@ body {
   float: left;
   font-family: 'Roboto';
   box-shadow: 0px 5px 15px #7f8c8d;
-}
-
-#map-canvas {
-  height: 250px;
 }
