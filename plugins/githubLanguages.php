@@ -1,9 +1,18 @@
 <?php
 //This class MUST be called the same as the file name without ".php"
+function recursive_array_search($needle,$haystack) {
+    foreach($haystack as $key=>$value) {
+        $current_key=$key;
+        if($needle===$value OR (is_array($value) && recursive_array_search($needle,$value) !== false)) {
+            return $current_key;
+        }
+    }
+    return false;
+}
 class githubLanguages {
 	//A short description of your plugin
 	public $title = "Github";
-	public $scripts;
+	public $scripts = ["https://www.google.com/jsapi"];
 	//This sets whether you want the plugin to be continually updated.
 	public $update = false;
 	// This function is run once at plugin initialisation
@@ -14,13 +23,52 @@ class githubLanguages {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
-		$array = json_decode(get_file_contents('https://api.github.com/search/repositories?q=Tetris&sort=stars&order=desc'));
-		return;
-		$langCount = array();
-		foreach ($array[$items] as $item) {
-			$langCount->push($item['language']);
+		$query = urlencode('yrs');
+		$url = "https://api.github.com/search/repositories?q=$query&sort=updated&order=desc";
+		//Begin messy curl (This is the equivalent of $content = file_get_contents($url);, but with a useragent)
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_USERAGENT, "The Hack Dash App");
+		$content = curl_exec($ch);
+		curl_close($ch);
+		//End messy curl
+		$array = json_decode($content);
+		$langCount = array(array("Language","Number of Projects"));
+		foreach ($array->items as $item) {
+			if ($item->language != NULL) {//[suggestion] also check the date they were created with ->created_at
+				if (recursive_array_search($item->language, $langCount)){//if the language of the current item
+										//is already in the language counter
+					//get current number of languages for this language
+					foreach ( $langCount as $i => $lang ){
+						if ($lang[0] == $item->language){
+							$index = $i;
+						}
+					}
+					//add one to the current number
+					$langCount[$index][1] = $langCount[$index][1] + 1;
+				}
+				else{
+					//append it to the array
+					array_push($langCount, array($item->language, 1));
+				}
+			}
 		}
-		
+		$arrayData = json_encode($langCount);
+		return '<div id="piechart" ></div>
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+function drawChart() {
+        var data = google.visualization.arrayToDataTable(' . $arrayData . ');
+        var options = {
+                title: \'Github projects with "yrs" in the name\'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));
+        chart.draw(data, options);
+}
+</script>
+';
 	}
 }
 ?>

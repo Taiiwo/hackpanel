@@ -1,5 +1,7 @@
 $(function(window,undefined){
+var hackathon={};//options for the selected hackathon
 var plugins=[];
+$(".tiles").fadeOut(10);
 plugins.add=function(plugin){
 	for(var i=0;i<plugins.length;i++){
 		if(plugin.id==plugins[i].id){
@@ -57,11 +59,29 @@ plugin.prototype={
 	get:function(){
 		$.ajax("api/get.php",
 			{
-				data:{plugin:this.url()},
+				data:{
+					plugin:this.url(),
+					searchTerm:this.searchTerm()
+				},
 				success:function(data){
 					var markup=$("<div/>").addClass("plugin")
 						.append($("<h3/>").text(data.title))
 						.append(data.markup);
+					//If data.scripts is a non-null array
+					if(typeof(data.scripts)==typeof([])&data.scripts!=null){
+						//loop through each script
+						for(var i=0;i<data.scripts.length;i++){
+							//if /*Injected*/ is at the start of this array element
+							if(data.scripts[i].match("\^..Injected") != null){
+								//Add the script to the HTML with script tags
+								$("head").append("<script type='text/javscript'>"+data.scripts[i]+"</script>");
+							}
+							else{
+								//Now add it again...........
+								$("head").append($("<script type='text/javascript'>").attr("src",data.scripts[i]));
+							}
+						}
+					}
 					markup.replaceAll(this.markup());
 				},
 				type:"POST",
@@ -69,6 +89,15 @@ plugin.prototype={
 				context:this
 			}
 		);
+	},
+	searchTerm:function(term){
+		if(term==undefined){
+			return this.props.searchTerm;
+		}
+		else{
+			this.props.searchTerm=term;
+			return this;
+		}
 	}
 }
 function getAvaliablePlugins(){
@@ -103,7 +132,7 @@ search={
 	},
 	loadResults:function(term){
 		if(term==undefined)var term="";
-		var resultsMarkup=$("<div/>").addClass("search-options");
+		var resultsMarkup=$("<div/>").addClass("search-items");
 		for(var i=0;i<search.options.length;i++){
 			var found=false;
 			var keys=Object.keys(search.options[i]);
@@ -130,16 +159,25 @@ search={
 					).append(
 						$("<span/>").addClass("description").text(result.description)
 					)
+				individualResult.click(result,function(e){
+					hackathon=e.data;
+					$("#search").val(e.data.default);
+					$(".search-items").slideUp();
+					$(".tiles").fadeIn(500);
+					$("#search").focus(function(){$(".search-items").slideDown()});
+					for(var i=0;i<plugins.length;i++){
+						plugins[i].get();
+					}
+				})
 				resultsMarkup.append(individualResult);
 			}
 		}
-		resultsMarkup.replaceAll($(".search-options"));
+		resultsMarkup.replaceAll($(".search-items"));
 	}
 }
 search.loadJSON();
 $("#search").bind('input',function(){
 	search.loadResults(this.value);
 });
-
 
 });

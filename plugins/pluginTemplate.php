@@ -3,7 +3,7 @@
 class pluginTemplate {
 	//A short description of your plugin
 	public $title = "The Template Plugin";
-	public $scripts;
+	public $scripts=["js/hi.js"];
 	//This sets whether you want the plugin to be continually updated.
 	public $update = false;
 	// This function is run once at plugin initialisation
@@ -14,7 +14,7 @@ class pluginTemplate {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
-		return "<h1>LOL</h1>";
+		return "<h1>The user searched for $searchTerm</h1>";
 	}
 }
 ?>
