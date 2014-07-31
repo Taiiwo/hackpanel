@@ -1,5 +1,4 @@
-<?php
-//This class MUST be called the same as the file name without ".php"
+<?php //This class MUST be called the same as the file name without ".php" 
 function recursive_array_search($needle,$haystack) {
     foreach($haystack as $key=>$value) {
         $current_key=$key;
@@ -12,7 +11,7 @@ function recursive_array_search($needle,$haystack) {
 class githubLanguages {
 	//A short description of your plugin
 	public $title = "Github";
-	public $scripts = array("https://www.google.com/jsapi");
+	public $scripts = array();
 	//This sets whether you want the plugin to be continually updated.
 	public $update = false;
 	// This function is run once at plugin initialisation
@@ -56,18 +55,20 @@ class githubLanguages {
 		}
 		$arrayData = json_encode($langCount);
 		return '<div id="piechart" ></div>
-<script type="text/javascript">
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart);
+    <script type="text/javascript">
+drawChart();
 function drawChart() {
-        var data = google.visualization.arrayToDataTable(' . $arrayData . ');
+	debugger;
+        var data = google.visualization.arrayToDataTable('. $arrayData .');
+
         var options = {
-                title: \'Github projects with "yrs" in the name\'
+          title: \'My Daily Activities\'
         };
+
         var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));
         chart.draw(data, options);
-}
-</script>
+      }
+    </script>
 ';
 	}
 }
