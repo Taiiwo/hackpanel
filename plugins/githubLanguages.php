@@ -1,4 +1,4 @@
-<?php //This class MUST be called the same as the file name without ".php" 
+<?php //This class MUST be called the same as the file name without ".php"
 function recursive_array_search($needle,$haystack) {
     foreach($haystack as $key=>$value) {
         $current_key=$key;
@@ -54,7 +54,7 @@ class githubLanguages {
 			}
 		}
 		$arrayData = json_encode($langCount);
-		return '<div id="piechart" style="height: 250px;"></div>
+		return '<div id="piechart" style="height: 265px;"></div>
     <script type="text/javascript">
 drawChart();
 function drawChart() {
