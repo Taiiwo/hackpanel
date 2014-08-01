@@ -69,6 +69,7 @@ function commitCompare($num1,$num2){
 }
 
 function getRepoCommits($user,$repo){
+	if($user==''||$repo=='')return array();
 	global $gitOAuth;
 	$apiUrl="https://api.github.com/repos/".$user."/".$repo."/commits";
 	$ch = curl_init();
