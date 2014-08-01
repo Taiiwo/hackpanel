@@ -44,13 +44,19 @@ body {
   float: none;
 }
 
+#searchBox {
+  margin: 0 auto;
+  max-width: 720px;
+  display: block;
+  float: none;
+}
+
 #search {
-  width: 720px;
+  width: 90%;
   height: 35px;
   font-size: 20px;
   font-family: 'Roboto';
   padding: 0px 10px;
-  margin: 0px 30px;
   border: none;
   color: #7f8c8d;
   box-shadow: 0px 5px 10px #7f8c8d;
@@ -69,6 +75,7 @@ body {
   width: 30px;
   height: 30px;
   float: right;
+  margin-top: -35px;
   margin-right: 20px;
   transition: .25s;
   -moz-transition: .25s;
@@ -80,20 +87,24 @@ body {
   margin: 5px;
 }
 
+#add-box, #settings-box {
+  display: none
+}
+
 .searchResult:nth-child(2n) {
     background-color: #EDEDED
 }
 
 .searchResult {
-  width:100%;
+  width: 100%;
   padding: 15px 20px;
   color: #2c3e50;
   font-family: 'Roboto';
 }
 
 .searchResult > div {
-  max-width:960px;
-  margin:0 auto;
+  max-width: 960px;
+  margin: 0 auto;
   display: block;
   float:none;
 }
@@ -131,3 +142,59 @@ body {
   box-shadow: 0px 5px 15px #7f8c8d;
 }
 
+@media (max-width:900px) {
+  #top-bar {
+    height: 200px;
+  }
+
+  .logo {
+    font-size: 56px;
+    margin-bottom: 5px;
+  }
+
+  #add-button, #settings-button {
+    display: none;
+  }
+
+  #searchBox {
+    margin: 0 auto;
+    max-width: 720px;
+    display: block;
+    float: none;
+  }
+
+  #search {
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  #buttonBoxes {
+    margin: 0 auto;
+    display: block;
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  #add-box, #settings-box {
+    background-color: #03a9f4;
+    color: #ffffff;
+    width: 110px;
+    height: 50px;
+    float: none;
+    margin: -20px 10px 0px 10px;
+    transition: .25s;
+    -moz-transition: .25s;
+    -webkit-transition: .25s;
+    display: inline-block;
+  }
+
+  #add-box img, #settings-box img {
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    display: block;
+    float: none;
+  }
+}
