@@ -7,19 +7,14 @@
 		<title>Dashboard - Presentation</title>
 		<link href='http://fonts.googleapis.com/css?family=Titan+One' rel='stylesheet' type='text/css'>
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
-
+		<meta name="author" content="Mooney">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet" href="css/theme/default.css" id="theme">
-
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-
+		<link rel="stylesheet" href="lib/css/zenburn.css">	
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
 			if( window.location.search.match( /print-pdf/gi ) ) {
@@ -30,16 +25,12 @@
 				document.getElementsByTagName( 'head' )[0].appendChild( link );
 			}
 		</script>
-
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
 	</head>
-
 	<body>
-
 		<div class="reveal">
-
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
@@ -49,75 +40,57 @@
 						<small>Created by <a href="https://github.com/Taiiwo/hackpanel">Tyler Smith, Edward Longman, James Brooks and Eric Moon</a></small>
 					</p>
 				</section>
-
-				<section>
-					<h2>Heads Up</h2>
+				<sectoion>
+					<h2>What does it do?</h2>
 					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
+						HackPanel is an all purpose dashboard with realtime widgets displaying updates for a specific hackathon.	
+						<br>for a pie chart widget that compares the use of all languages used in a Young Rewired State.
 					</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
 				</section>
-
-				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
-						<h2>Vertical Slides</h2>
+						<h2>Plugins you ask?</h2>
 						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#" class="navigate-down">down</a>.
+							Why yes, we use plugins nested in tiles to display all the information you need about the current event/hackathon.
+
 						</p>
 						<a href="#" class="image navigate-down">
 							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
 						</a>
 					</section>
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
+						<h2>Plugins in tiles?</h2>
+						<p>Yes, our design team,<br> (taking inspiration from google+ / Windows Metro)<br> used tiles to nest the plugins.</p>
 					</section>
 					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
+						<h2>So what do these plugins do exactly?</h2>
+						<p>
+							When a user searches for an event/hackathon, A php script grabs all plugins similar to the search term. <br> 
+							For instance, a search of YRS or Young Rewired State will, return a twitter feed, an irc channel, the amount people using a language which is displayed in a pie chart and a live github feed of commits.
+						</p>
+						
 					</section>
 				</section>
 
 				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slid.es" target="_blank">http://slid.es</a>.
+					<h2>Demonstration</h2>
+					<p>						
+						<a href="#">DEMO IS HERE</a> 
 					</p>
 				</section>
-
 				<section>
-					<h2>Point of View</h2>
+					<h2>Our Code</h2>
 					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
+						<!--insert some images -->
 					</p>
 				</section>
-
+				<!-- from here is template (wip) -->
 				<section>
-					<h2>Works in Mobile Safari</h2>
+					<h2></h2>
 					<p>
 						Try it out! You can swipe through the slides and pinch your way to the overview.
 					</p>
 				</section>
-
 				<section>
 					<h2>Marvelous Unordered List</h2>
 					<ul>
@@ -127,7 +100,6 @@
 						<li>Or here</li>
 					</ul>
 				</section>
-
 				<section>
 					<h2>Fantastic Ordered List</h2>
 					<ol>
@@ -136,7 +108,6 @@
 						<li>Three!</li>
 					</ol>
 				</section>
-
 				<section data-markdown>
 					<script type="text/template">
 						## Markdown support
@@ -153,7 +124,6 @@
 						```
 					</script>
 				</section>
-
 				<section id="transitions">
 					<h2>Transition Styles</h2>
 					<p>

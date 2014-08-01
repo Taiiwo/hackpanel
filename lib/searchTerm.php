@@ -8,7 +8,7 @@ function getSearchAlias($term,$keys){
 			break;
 		}
 	}
-	$returnArray=[];
+	$returnArray = array();
 	foreach ($keys as $key){
 		if(array_key_exists($key,$hackathon)){
 			$returnArray[$key]=$hackathon[$key];
