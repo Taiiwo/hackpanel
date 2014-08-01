@@ -1,4 +1,5 @@
 <?php
+set_time_limit(240);
 @require "simple_html_dom.php";
 @require "db.php";
 function loadYRSHacks(){
@@ -47,4 +48,66 @@ function loadYRSHacks(){
 		}
 		//echo $link->href;
 	}
+}
+
+//this function compares two commits to see which one is more recent
+function commitCompare($num1,$num2){
+	if(DateTime($num1->commit->author->date)>DateTime($num2->commit->author->date)){
+		return 1;
+	}
+	elseif(DateTime($num1->commit->author->date)==DateTime($num2->commit->author->date)){
+		return 0;
+	}
+	else{
+		return -1;
+	}
+}
+
+function getRepoCommits($user,$repo){
+	global $gitOAuth;
+	$apiUrl="https://api.github.com/repos/".$user."/".$repo."/commits";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $apiUrl);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_USERAGENT, "The Hack Dash App");
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_USERPWD, "$gitOAuth:x-oauth-basic");
+	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+	$content = curl_exec($ch);
+	curl_close($ch);
+	return $content;
+}
+
+function loadGithubCommits(){
+	global $db,$gitOAuth;
+	$db_obj = new mysqli($db["host"],$db["user"],$db["pass"],$db["db"]);
+	$projects = $db_obj->query("SELECT `git_user`,`git_name` FROM `git` WHERE `git_user`!='' AND `git_name`!=''");
+	$allCommits=array();
+	if($projects!==FALSE & $projects->num_rows>0){
+		while ($project = $projects->fetch_object()){
+			$content=gitRepoCommits($project->git_user,$project->git_name);
+			$commits = json_decode($content);
+			for($i=0;$i<count($commits),$i<30;$i++){
+				$allCommits[]=$commits[$i];
+			}
+			echo $apiUrl."</br>";
+		}
+		usort($allCommits,commitCompare);
+	}
+	?><ul><?php
+	foreach($allCommits as $result){
+		print_r($result);
+		$url_parts=explode('/',$result->commit->url);
+		for($i=0;$i<count($url_parts);$i++){
+			if(preg_match("/github.com/i",$url_parts[$i])){
+				break;
+			}
+		}
+		$i++;$i++;
+		$git_user=(count($url_parts)>$i)?$url_parts[$i]:null;
+		$i++;
+		$git_name=(count($url_parts)>$i)?$url_parts[$i]:null;
+		echo "<li>".$result->commit->author->name." COMMITTED ".$result->commit->message." ON ".$git_user."/".$git_name."</li>";
+	}
+	?></ul><?php
 }
