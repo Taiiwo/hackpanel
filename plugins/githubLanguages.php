@@ -59,7 +59,6 @@ class githubLanguages {
     <script type="text/javascript">
 drawChart();
 function drawChart() {
-	debugger;
         var data = google.visualization.arrayToDataTable('. $arrayData .');
 
         var options = {
