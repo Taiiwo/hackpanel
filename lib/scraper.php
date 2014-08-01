@@ -1,4 +1,4 @@
 <?php
-require_once "../lib/YRSHacksScrape.php";
+require_once "YRSHacksScrape.php";
 loadYRSHacks();
 ?>
