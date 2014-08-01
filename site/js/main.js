@@ -1,6 +1,17 @@
-$(function(window,undefined){
-var hackathon={};//options for the selected hackathon
-var plugins=[];
+$(function(){
+var hackathon = [];
+var plugins = [];
+var log = $('.tiles');
+var pluginsGrid = $(".tiles").gridster({
+       	widget_base_dimensions: [290, 290],
+       	widget_margins: [15, 15],
+       	autogrow_cols: true,
+	min_cols: 3,
+	max_cols: 3,
+       	resize: {
+       		enabled: true
+       	}
+	}).data('gridster');
 $(".tiles").fadeOut(10);
 plugins.add=function(plugin){
 	for(var i=0;i<plugins.length;i++){
@@ -69,7 +80,7 @@ plugin.prototype={
 					var markup=$("<div/>").addClass("plugin").addClass(this.url())
 						.append(data.markup);
 					$('.' + this.url()).attr('title',data.title);
-					this.markup().empty()
+					this.markup().empty();
 					this.markup().append(markup.contents());
 					if ( data.style != 'null' ) {
 						$("head").append("<style type='text/css'>"+data.style+"</style>");
@@ -105,7 +116,8 @@ function getAvaliablePlugins(){
 		function(data){
 			for(var i=0;i<data.length;i++){
 				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin").addClass(data[i])});
-				$(".tiles").append(toAdd.markup());
+				console.log(pluginsGrid);
+				pluginsGrid.add_widget(toAdd.markup(),1,1,1);
 				plugins.add(toAdd);
 				toAdd.get();
 			}
