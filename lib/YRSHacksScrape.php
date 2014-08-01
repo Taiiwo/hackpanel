@@ -52,13 +52,18 @@ function loadYRSHacks(){
 
 //this function compares two commits to see which one is more recent
 function commitCompare($num1,$num2){
-	if(DateTime($num1->commit->author->date)>DateTime($num2->commit->author->date)){
+	$date1=new DateTime($num1->commit->author->date);
+	$date2=new DateTime($num2->commit->author->date);
+	if($date1>$date2){
+		//echo 'bigger';
 		return 1;
 	}
-	elseif(DateTime($num1->commit->author->date)==DateTime($num2->commit->author->date)){
+	elseif($date1==$date2){
+		//echo 'same';
 		return 0;
 	}
 	else{
+		//echo 'smaller';
 		return -1;
 	}
 }
@@ -84,19 +89,19 @@ function loadGithubCommits(){
 	$projects = $db_obj->query("SELECT `git_user`,`git_name` FROM `git` WHERE `git_user`!='' AND `git_name`!=''");
 	$allCommits=array();
 	if($projects!==FALSE & $projects->num_rows>0){
-		while ($project = $projects->fetch_object()){
-			$content=gitRepoCommits($project->git_user,$project->git_name);
+		$projectsArray=$projects->fetch_all(MYSQL_ASSOC);
+		foreach ($projectsArray as $project){
+			$content=getRepoCommits($project["git_name"],$project["git_user"]);
 			$commits = json_decode($content);
-			for($i=0;$i<count($commits),$i<30;$i++){
+			for($i=0;$i<count($commits)&$i<30;$i++){
 				$allCommits[]=$commits[$i];
 			}
-			echo $apiUrl."</br>";
 		}
-		usort($allCommits,commitCompare);
+		usort($allCommits,"commitCompare");
 	}
 	?><ul><?php
+	$limiter=0;
 	foreach($allCommits as $result){
-		print_r($result);
 		$url_parts=explode('/',$result->commit->url);
 		for($i=0;$i<count($url_parts);$i++){
 			if(preg_match("/github.com/i",$url_parts[$i])){
@@ -108,6 +113,11 @@ function loadGithubCommits(){
 		$i++;
 		$git_name=(count($url_parts)>$i)?$url_parts[$i]:null;
 		echo "<li>".$result->commit->author->name." COMMITTED ".$result->commit->message." ON ".$git_user."/".$git_name."</li>";
+		if($limiter>100)break;
+		$limiter++;
 	}
 	?></ul><?php
+	$jsonFile=fopen('githubCommits.json', 'w');
+	fwrite($jsonFile,json_encode($allCommits));
+	fclose($jsonFile);
 }
