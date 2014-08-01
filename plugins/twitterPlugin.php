@@ -6,7 +6,7 @@ class twitterPlugin {
 	public $scripts;
 	//This sets whether you want the plugin to be continually updated.
 	public $update = true;
-	public $categories=["twitterAccount","twitterHashtags"];
+	public $categories=array("twitterAccount","twitterHashtags");
 	// This function is run once at plugin initialisation
 	// External calls to APIs where the data should not change
 	// should be run here to help reduce update time.

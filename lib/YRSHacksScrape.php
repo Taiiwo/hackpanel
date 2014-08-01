@@ -1,4 +1,5 @@
 <?php
+set_time_limit(240);
 @require "simple_html_dom.php";
 @require "db.php";
 function loadYRSHacks(){
@@ -47,4 +48,76 @@ function loadYRSHacks(){
 		}
 		//echo $link->href;
 	}
+}
+
+//this function compares two commits to see which one is more recent
+function commitCompare($num1,$num2){
+	$date1=new DateTime($num1->commit->author->date);
+	$date2=new DateTime($num2->commit->author->date);
+	if($date1>$date2){
+		//echo 'bigger';
+		return 1;
+	}
+	elseif($date1==$date2){
+		//echo 'same';
+		return 0;
+	}
+	else{
+		//echo 'smaller';
+		return -1;
+	}
+}
+
+function getRepoCommits($user,$repo){
+	global $gitOAuth;
+	$apiUrl="https://api.github.com/repos/".$user."/".$repo."/commits";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $apiUrl);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_USERAGENT, "The Hack Dash App");
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_USERPWD, "$gitOAuth:x-oauth-basic");
+	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+	$content = curl_exec($ch);
+	curl_close($ch);
+	return $content;
+}
+
+function loadGithubCommits(){
+	global $db,$gitOAuth;
+	$db_obj = new mysqli($db["host"],$db["user"],$db["pass"],$db["db"]);
+	$projects = $db_obj->query("SELECT `git_user`,`git_name` FROM `git` WHERE `git_user`!='' AND `git_name`!=''");
+	$allCommits=array();
+	if($projects!==FALSE & $projects->num_rows>0){
+		$projectsArray=$projects->fetch_all(MYSQL_ASSOC);
+		foreach ($projectsArray as $project){
+			$content=getRepoCommits($project["git_name"],$project["git_user"]);
+			$commits = json_decode($content);
+			for($i=0;$i<count($commits)&$i<30;$i++){
+				$allCommits[]=$commits[$i];
+			}
+		}
+		usort($allCommits,"commitCompare");
+	}
+	?><ul><?php
+	$limiter=0;
+	foreach($allCommits as $result){
+		$url_parts=explode('/',$result->commit->url);
+		for($i=0;$i<count($url_parts);$i++){
+			if(preg_match("/github.com/i",$url_parts[$i])){
+				break;
+			}
+		}
+		$i++;$i++;
+		$git_user=(count($url_parts)>$i)?$url_parts[$i]:null;
+		$i++;
+		$git_name=(count($url_parts)>$i)?$url_parts[$i]:null;
+		echo "<li>".$result->commit->author->name." COMMITTED ".$result->commit->message." ON ".$git_user."/".$git_name."</li>";
+		if($limiter>100)break;
+		$limiter++;
+	}
+	?></ul><?php
+	$jsonFile=fopen('githubCommits.json', 'w');
+	fwrite($jsonFile,json_encode($allCommits));
+	fclose($jsonFile);
 }

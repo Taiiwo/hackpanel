@@ -23,7 +23,9 @@ class githubLanguages {
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
 		require_once '../../lib/searchTerm.php';
-		$query = urlencode( getSearchAlias($searchTerm, array('irc'))['irc'] );
+		$alias = getSearchAlias($searchTerm, array('irc'));
+		$query = urlencode( $alias['irc'] );
+		//$query = urlencode( (getSearchAlias($searchTerm, array('irc'))['irc'] );
 		$url = "https://api.github.com/search/repositories?q=$query&sort=updated&order=desc";
 		//Begin messy curl (This is the equivalent of $content = file_get_contents($url);, but with a useragent)
 		$ch = curl_init();
@@ -59,7 +61,6 @@ class githubLanguages {
     <script type="text/javascript">
 drawChart();
 function drawChart() {
-	debugger;
         var data = google.visualization.arrayToDataTable('. $arrayData .');
 
         var options = {
