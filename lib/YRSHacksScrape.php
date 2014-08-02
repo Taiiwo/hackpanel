@@ -1,5 +1,6 @@
 <?php
 set_time_limit(240);
+date_default_timezone_set("Europe/Lisbon");
 @require "simple_html_dom.php";
 @require "db.php";
 function loadYRSHacks(){
@@ -86,10 +87,11 @@ function loadGithubCommits(){
 		if(count($project)<4)continue;
 		$content = getRepoCommits($project["git_user"],$project["git_repo"]);
 		$commits = json_decode($content);
-		if(is_array($commits)){
-			for($i=0;$i<count($commits)&$i<10;$i++){
-				$allCommits[]=$commits[$i];
-			}
+		if(!is_array($commits))continue;
+
+		for($i=0;$i<count($commits);$i++){
+			if($i>14)break;
+			$allCommits[]=$commits[$i];
 		}
 		echo $project["git_user"]."/".$project["git_repo"];
 	}
