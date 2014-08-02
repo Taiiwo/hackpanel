@@ -13,8 +13,8 @@ class githubCommits {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
-		$commits=json_decode(file_get_contents("../lib/githubCommits.json"));
-		$return="<ul>"
+		$commits=json_decode(file_get_contents("../../lib/githubCommits.json"));
+		$return="<ul>";
 		foreach($commits as $commit){
 			$url_parts=explode('/',$commit->url);
 			for($i=0;$i<count($url_parts);$i++){
@@ -34,11 +34,11 @@ class githubCommits {
 						</div>
 						<div class='commitFooter'>
 							<span class='commitMessage'>".$commit->commit->message."</span>
-							<span class='commitTime'>".$commitTime.format("d-m-Y H:i:s")."</span>
+							<span class='commitTime'>".$commitTime->format("d-m-Y H:i:s")."</span>
 						</div>
 					</li>";
 		}
-		$return.="</ul>"
+		$return.="</ul>";
 		return $return;
 	}
 }
