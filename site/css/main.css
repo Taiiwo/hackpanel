@@ -129,12 +129,13 @@ body {
   margin: auto;
   display: block;
   float: none;
+  max-width: 960px !important;
+  width: 100% !important;
 }
 
 .plugin {
   background-color: #e00032;
-  width: 290px;/*
-  min-height: 290px;*/
+  width: 290px;
   margin: 15px;
   float: left;
   color: #ffffff;
