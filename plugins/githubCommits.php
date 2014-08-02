@@ -13,6 +13,7 @@ class githubCommits {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
+		date_default_timezone_set("Europe/Lisbon");
 		$commits=json_decode(file_get_contents("../../lib/githubCommits.json"));
 		$return="<ul>";
 		foreach($commits as $commit){
