@@ -158,17 +158,25 @@ header {
 li {
   padding-bottom: 20px;
   padding-left: 5px;
+  padding-top:  10px;
 }
 
 .githubCommits ul {
   overflow-y: scroll;
   overflow-x:  hidden;
   height: 240px;
-  padding-top:  10px;
+  padding-bottom: 10px;
 }
 
 .githubCommits a {
   color: rgb(189, 189, 189);
+}
+
+.githubCommits li:nth-child(2n) {
+    background-color: rgba(0,0,0,0.15);
+}
+.githubCommits li:nth-child(2n-1) {
+    background-color: rgba(255,255,255,0.15);
 }
 
 .twitter-timeline {
