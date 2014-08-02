@@ -6,7 +6,7 @@ var pluginsGrid = $(".tiles").gridster({
        	widget_base_dimensions: [290, 290],
        	widget_margins: [15, 15],
        	autogrow_cols: true,
-	min_cols: 3,
+	min_cols: 1,
 	max_cols: 3,
 	draggable: {
 		handle: 'header'
@@ -80,10 +80,11 @@ plugin.prototype={
 					searchTerm:hackathon.default
 				},
 				success:function(data){
+					this.name(data.title);
 					var markup=$("<ln/>").addClass("plugin").addClass(this.url())
-						.append($("<header>|||</header>"))
+						.append($("<header>|||<span class='pluginName'>"+this.name()+"</span></header>"))
 						.append(data.markup);
-					$('.' + this.url()).attr('title',data.title)
+					$('.' + this.url()).attr('title',this.name());
 					this.markup().empty();
 					this.markup().append(markup.contents());
 					if ( data.style != 'null' ) {
@@ -121,7 +122,7 @@ function getAvaliablePlugins(){
 			for(var i=0;i<data.length;i++){
 				var toAdd=new plugin({url:data[i],markup:$("<ln/>").addClass("plugin").addClass(data[i])});
 				console.log(pluginsGrid);
-				pluginsGrid.add_widget(toAdd.markup(),1,1,1);
+				pluginsGrid.add_widget(toAdd.markup());
 				plugins.add(toAdd);
 				toAdd.get();
 			}
