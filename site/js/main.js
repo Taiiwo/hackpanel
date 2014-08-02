@@ -121,7 +121,7 @@ function getAvaliablePlugins(){
 			for(var i=0;i<data.length;i++){
 				var toAdd=new plugin({url:data[i],markup:$("<ln/>").addClass("plugin").addClass(data[i])});
 				console.log(pluginsGrid);
-				pluginsGrid.add_widget(toAdd.markup(),1,1,1);
+				pluginsGrid.add_widget(toAdd.markup());
 				plugins.add(toAdd);
 				toAdd.get();
 			}
