@@ -1,8 +1,3 @@
-.gridster * {
-  margin:0;
-  padding:0;
-}
-
 ul {
   list-style-type: none;
 }
@@ -22,19 +17,8 @@ ul {
 /*/
 
 
-.gridster li {
-    font-size: 1em;
-    font-weight: bold;
-    text-align: center;
-    line-height: 100%;
-}
-
-
 .gridster {
     margin: 0 auto;
-
-    opacity: .8;
-
     -webkit-transition: opacity .6s;
     -moz-transition: opacity .6s;
     -o-transition: opacity .6s;
@@ -47,7 +31,7 @@ ul {
 }
 
 .gridster .player {
-    background: #BBB;
+    background: #f36c60;
 }
 
 
@@ -55,4 +39,3 @@ ul {
     border: none!important;
     background: red!important;
 }
-
