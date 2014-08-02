@@ -6,7 +6,7 @@ var pluginsGrid = $(".tiles").gridster({
        	widget_base_dimensions: [290, 290],
        	widget_margins: [15, 15],
        	autogrow_cols: true,
-	min_cols: 3,
+	min_cols: 1,
 	max_cols: 3,
 	draggable: {
 		handle: 'header'
