@@ -87,31 +87,13 @@ function loadGithubCommits(){
 		$content = getRepoCommits($project["git_user"],$project["git_repo"]);
 		$commits = json_decode($content);
 		if(is_array($commits)){
-			for($i=0;$i<count($commits)&$i<30;$i++){
+			for($i=0;$i<count($commits)&$i<10;$i++){
 				$allCommits[]=$commits[$i];
 			}
 		}
-		echo "<br/>".$project["git_user"]."/".$project["git_repo"];
+		print $project["git_user"]."/".$project["git_repo"];
 	}
 	usort($allCommits,"commitCompare");
-	?><ul><?php
-	$limiter=0;
-	foreach($allCommits as $result){
-		$url_parts=explode('/',$result->commit->url);
-		for($i=0;$i<count($url_parts);$i++){
-			if(preg_match("/github.com/i",$url_parts[$i])){
-				break;
-			}
-		}
-		$i++;$i++;
-		$git_user=(count($url_parts)>$i)?$url_parts[$i]:null;
-		$i++;
-		$git_repo=(count($url_parts)>$i)?$url_parts[$i]:null;
-		echo "<li>".$result->commit->author->name." COMMITTED ".$result->commit->message." ON ".$git_user."/".$git_repo." AT ".$result->commit->author->date."</li>";
-		if($limiter>100)break;
-		$limiter++;
-	}
-	?></ul><?php
 	$jsonFile=fopen('githubCommits.json', 'w');
 	$topCommits=array_chunk($allCommits,100);
 	fwrite($jsonFile,json_encode($topCommits[0]));
