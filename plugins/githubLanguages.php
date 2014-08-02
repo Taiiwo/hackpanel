@@ -64,8 +64,7 @@ function drawChart() {
         var data = google.visualization.arrayToDataTable('. $arrayData .');
 
         var options = {
-	  chartArea: {left: 0, right: 0,  width: "100%", height: "80%", top: 30, bottom: 10},
-	  height: 290,
+	  chartArea: {left: 0, right: 0,  width: "100%", height: "99%", top: 10, bottom: 10},
 	  legend: \'none\',//Omit this line and re-add the next two to put the legends back
 		/*
 	  legend: {textStyle: {color: "white", fontSize: 14}},

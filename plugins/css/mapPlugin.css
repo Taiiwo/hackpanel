@@ -1,9 +1,10 @@
-/*.mapPlugin {
-  width: 610px;
+.mapPlugin {
+	min-width: 290px;
+	min-height: 268px;
 }
 
 #map-canvas {
-  width: 610px;
-  height: 290px;
+	min-width: 290px;
+	min-height: 268px;
 }
-*/
+
