@@ -1,7 +1,7 @@
 <?php //This class MUST be called the same as the file name without ".php" 
 class wolframResults {
 	//A short description of your plugin
-	public $title = "Searches Wolfram Alpha";
+	public $title = "Wolfram|Alpha";
 	public $scripts;
         //This sets whether you want the plugin to be continually updated.
         public $update = false;
