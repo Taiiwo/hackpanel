@@ -8,6 +8,9 @@ var pluginsGrid = $(".tiles").gridster({
        	autogrow_cols: true,
 	min_cols: 3,
 	max_cols: 3,
+	draggable: {
+		handle: 'header'
+	},
        	resize: {
        		enabled: true
        	}
@@ -77,9 +80,10 @@ plugin.prototype={
 					searchTerm:hackathon.default
 				},
 				success:function(data){
-					var markup=$("<div/>").addClass("plugin").addClass(this.url())
+					var markup=$("<ln/>").addClass("plugin").addClass(this.url())
+						.append($("<header>|||</header>"))
 						.append(data.markup);
-					$('.' + this.url()).attr('title',data.title);
+					$('.' + this.url()).attr('title',data.title)
 					this.markup().empty();
 					this.markup().append(markup.contents());
 					if ( data.style != 'null' ) {
@@ -115,7 +119,7 @@ function getAvaliablePlugins(){
 		{},
 		function(data){
 			for(var i=0;i<data.length;i++){
-				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin").addClass(data[i])});
+				var toAdd=new plugin({url:data[i],markup:$("<ln/>").addClass("plugin").addClass(data[i])});
 				console.log(pluginsGrid);
 				pluginsGrid.add_widget(toAdd.markup(),1,1,1);
 				plugins.add(toAdd);
@@ -192,5 +196,4 @@ search.loadJSON();
 $("#search").bind('input',function(){
 	search.loadResults(this.value);
 });
-
 });
