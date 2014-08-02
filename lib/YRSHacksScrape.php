@@ -91,11 +91,14 @@ function loadGithubCommits(){
 				$allCommits[]=$commits[$i];
 			}
 		}
-		print $project["git_user"]."/".$project["git_repo"];
+		echo $project["git_user"]."/".$project["git_repo"];
 	}
 	usort($allCommits,"commitCompare");
 	$jsonFile=fopen('githubCommits.json', 'w');
-	$topCommits=array_chunk($allCommits,100);
-	fwrite($jsonFile,json_encode($topCommits[0]));
+	$topCommits=array();
+	for($i=0;$i<100;$i++){
+		$topCommits[]=$allCommits[$i];
+	}
+	fwrite($jsonFile,json_encode($topCommits));
 	fclose($jsonFile);
 }
