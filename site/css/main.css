@@ -126,7 +126,7 @@ body {
 }
 
 .tiles {
-  margin: 0 auto;
+  margin: auto;
   display: block;
   float: none;
 }
@@ -197,4 +197,7 @@ body {
     display: block;
     float: none;
   }
+}
+#tileBound {
+	margin: auto;
 }
