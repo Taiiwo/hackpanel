@@ -154,6 +154,10 @@ body {
 header {
   padding: 10px;
 }
+header span{
+	float:right;
+	padding-right:4px;
+}
 
 li {
   padding-bottom: 20px;

@@ -80,10 +80,11 @@ plugin.prototype={
 					searchTerm:hackathon.default
 				},
 				success:function(data){
+					this.name(data.title);
 					var markup=$("<ln/>").addClass("plugin").addClass(this.url())
-						.append($("<header>|||</header>"))
+						.append($("<header>|||<span class='pluginName'>"+this.name()+"</span></header>"))
 						.append(data.markup);
-					$('.' + this.url()).attr('title',data.title)
+					$('.' + this.url()).attr('title',this.name());
 					this.markup().empty();
 					this.markup().append(markup.contents());
 					if ( data.style != 'null' ) {
