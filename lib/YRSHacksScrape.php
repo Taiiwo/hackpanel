@@ -94,9 +94,12 @@ function loadGithubCommits(){
 		foreach ($projectsArray as $project){
 			$content=getRepoCommits($project["git_name"],$project["git_user"]);
 			$commits = json_decode($content);
-			for($i=0;$i<count($commits)&$i<30;$i++){
-				$allCommits[]=$commits[$i];
+			if(is_array($commits)){
+				for($i=0;$i<count($commits)&$i<30;$i++){
+					$allCommits[]=$commits[$i];
+				}
 			}
+			echo "<br/>".$project["git_name"]."/".$project["git_user"];
 		}
 		usort($allCommits,"commitCompare");
 	}
