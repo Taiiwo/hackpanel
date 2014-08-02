@@ -7,7 +7,7 @@ function loadYRSHacks(){
 	///ul/li/div[starts-with(@class,'image')/a/@href]
 	$projects_links=$page_dom->find("div#projects ul li div.image a");
 	$quit=0;
-	$allUrls=[];
+	$allUrls=array();
 	foreach($projects_links as $link){
 		$href=$link->href;
 		$project_url="http://hacks.youngrewiredstate.org".$href;
