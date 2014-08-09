@@ -34,11 +34,13 @@ function format_error( $errno, $errstr, $errfile, $errline ) {
 function error_display($e){
 	die("This plugin is broken: " . $e);
 }
+//End really ugly stuff. Seriously, it's PHP's fault.
+
 require_once "../../lib/searchTerm.php";
 if (array_key_exists('searchTerm',$_POST) && $_POST['searchTerm'] != ''){
 	$searchTerm = preg_replace("/^\w{140}$/", "", $_POST['searchTerm']);
 }
-else {
+else {//Hardcoded default searchterm
 	$searchTerm = "Young Rewired State";
 }
 //import required function
@@ -66,12 +68,20 @@ if (file_exists("../../plugins/css/$className.css")){
 else {
 	$style = "null";
 }
+//$searchData = getSearchAlias(searchTerm);
 $pluginOutput = $thisClass->update($searchTerm);
+if (property_exists($thisClass, "size")){
+	$size = $thisClass->size;
+}
+else {
+	$size = array(1, 1);
+}
 $returnObj = array("last_updated"=>time(),
 			"update"=>$thisClass->update,
 			"markup"=>$pluginOutput,
 			"title"=>$thisClass->title,
 			"style"=>$style,
+			"size"=>$size,
 			"scripts"=>$thisClass->scripts);
 //echo ouput
 echo json_encode($returnObj);
