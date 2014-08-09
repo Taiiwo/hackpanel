@@ -1,6 +1,6 @@
 <?php
 function getSearchAlias($term,$keys){
-	if(!file_exists("../../site/api/searches.json"))die("couldn't find json");
+	if(!file_exists("../../site/api/searches.json"))return false;
 	$hackathonsJSON=file_get_contents("../../site/api/searches.json");
 	$hackathons=json_decode($hackathonsJSON,true);
 	foreach ($hackathons as $hackathon){
@@ -19,3 +19,15 @@ function getSearchAlias($term,$keys){
 	}
 	return $returnArray;
 }
+function getEventDetails(searchTerm) {
+	getSearchAlias
+	//api url
+	$url = "" . searchTerm;
+	//get json data
+	eventsJson = json_decode(file_get_contents($url));
+	retme = array();
+	retme['irc'] = eventsJson->ircChannel;
+	//etc
+	return retme;
+}
+?>
