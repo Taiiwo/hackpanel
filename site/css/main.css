@@ -154,6 +154,7 @@ body {
 header {
   padding: 10px;
 }
+
 header span{
 	float:right;
 	padding-right:4px;
@@ -165,26 +166,18 @@ li {
   padding-top:  10px;
 }
 
-.githubCommits ul {
-  overflow-y: scroll;
-  overflow-x:  hidden;
-  height: 240px;
-  padding-bottom: 10px;
+#tileBound {
+  margin: auto;
 }
 
-.githubCommits a {
-  color: rgb(189, 189, 189);
-}
-
-.githubCommits li:nth-child(2n) {
-    background-color: rgba(0,0,0,0.15);
-}
-.githubCommits li:nth-child(2n-1) {
-    background-color: rgba(255,255,255,0.15);
-}
-
-.twitter-timeline {
-  height: 250px;
+.gridster li header {
+  background: #999;
+  display: block;
+  font-size: 20px;
+  line-height: normal;
+  padding: 4px 0 6px ;
+  margin-bottom: 20px;
+  cursor: move;
 }
 
 @media (max-width:900px) {
@@ -242,8 +235,4 @@ li {
     display: block;
     float: none;
   }
-}
-
-#tileBound {
-	margin: auto;
 }

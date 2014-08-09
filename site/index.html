@@ -1,81 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title>Dashboard</title>
-        <link rel="stylesheet" href="css/main.css"/>
-        <link href='http://fonts.googleapis.com/css?family=Titan+One' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmP4F7uI_pUSW9duPY6xQjoRb0iJgcuic"></script>
-        <script src="js/jQuery.js" type="text/javascript"></script>
-        <script src="js/main.js" type="text/javascript"></script>
-        <script src="https://www.google.com/jsapi" type="text/javascript"></script>
-        <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-        <script>google.load("visualization", "1", {packages:["corechart"]});</script>
-
-
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Titan+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmP4F7uI_pUSW9duPY6xQjoRb0iJgcuic"></script>
+  <script src="js/jQuery.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+  <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+  <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <script>google.load("visualization", "1", {packages:["corechart"]});</script>
 	<link rel="stylesheet" type="text/css" href="css/jquery.css">
 	<link rel="stylesheet" type="text/css" href="css/demo.css">
-
-<style type="text/css">
-
-      .gridster li header {
-        background: #999;
-        display: block;
-        font-size: 20px;
-        line-height: normal;
-        padding: 4px 0 6px ;
-        margin-bottom: 20px;
-        cursor: move;
-      }
-
-</style>
+  <style type="text/css">
+      
+  </style>
 </head>
 
-<body>
-        <div id="top-bar">
+  <body>
+    <div id="top-bar">
       <div class="container">
         <h1 class="logo">HackPanel</h1>
-                                <div id="buttonBoxes">
-                 	               <a href="#add"><div id="add-box"><img src="img/add.png"></div></a>
-                 	               <a href="#settings"><div id="settings-box"><img src="img/cog.png"></div></a>
-                                </div>
-                                <div id="header-elements">
-                                        <div id="searchBox">
-                        <input id="search" placeholder="search for an event" type="text" name="search">
-                                        </div>
-                                        <a href="#settings"><div id="settings-button"><img src="img/cog.png"></div></a>
+        <div id="buttonBoxes">
+          <a href="#add"><div id="add-box"><img src="img/add.png"></div></a>
+          <a href="#settings"><div id="settings-box"><img src="img/cog.png"></div></a>
+        </div>
+        <div id="header-elements">
+          <div id="searchBox">
+            <input id="search" placeholder="search for an event" type="text" name="search">
+          </div>
+          <a href="#settings"><div id="settings-button"><img src="img/cog.png"></div></a>
           <a href="#add"><div id="add-button"><img src="img/add.png"></div></a>
         </div>
       </div>
     </div>
-                <div id="main-content">
-                        <div class="items-container">
-                                <div class="search-items">
-                                        <!-- EVENTS ADDED HERE -->
-                                </div>
-                        </div>
-                        <div id="addLightbox">
-                <div id="content">
-                                        <form>
+    <div id="main-content">
+      <div class="items-container">
+        <div class="search-items">
+          <!-- EVENTS ADDED HERE -->
+        </div>
+      </div>
+      <div id="addLightbox">
+        <div id="content">
+          <form>
 					</form>
-                </div>
-                        </div>
-                        <div id="settingsLightbox">
-                                <div id="content">
+        </div>
+      </div>
+      <div id="settingsLightbox">
+        <div id="content">
 
-                                </div>
-                        </div>
-                        <div class="container">
-                                        <!-- PLUGINS ADDED HERE -->
-					  <div class="gridster ready">
-					    <ul class="tiles" id="tileBound">
-					    </ul>
-					  </div>
-                        </div>
-                </div>
-
-	<script src="js/jquery_002.js" type="text/javascript" charset="utf-8"></script>
-
-
-</body></html>
+        </div>
+      </div>
+      <div class="container">
+        <!-- PLUGINS ADDED HERE -->
+				<div class="gridster ready">
+					<ul class="tiles" id="tileBound">
+					</ul>
+				</div>
+      </div>
+    </div>
+	  <script src="js/jquery_002.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

@@ -3,19 +3,9 @@ ul {
 }
 
 
-/*/
-/* demo
-/*/
-
-
 .controls {
     margin-bottom: 20px;
 }
-
-/*/
-/* gridster
-/*/
-
 
 .gridster {
     margin: 0 auto;
@@ -34,8 +24,8 @@ ul {
     background: #f36c60;
 }
 
-
 .gridster .preview-holder {
     border: none!important;
     background: red!important;
+    margin: 15px 0px 0px 15px;
 }
