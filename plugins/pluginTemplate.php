@@ -15,7 +15,11 @@ class pluginTemplate {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
-		return "<h1>The user searched for $searchTerm</h1>";
+		require_once('../../lib/searchTerm.php');
+		$details = getSearchAlias($searchTerm, array('description'));
+		return "
+<p>Description: ". $details['description'] ."</p>
+";
 	}
 }
 ?>
