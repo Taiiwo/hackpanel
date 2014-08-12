@@ -15,24 +15,28 @@ class mapPlugin {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
-		return '<div id="map-canvas"/><script>
+		require_once('../../lib/searchTerm.php');
+		$details = getSearchAlias($searchTerm, array('lat','lng'));
+		$lat = $details['lat'];
+		$lng = $details['lng'];
+		return "<div id=\"map-canvas\"/><script>
 function initialize() {
-	var latLong = new google.maps.LatLng(50.375715, -4.139280);
+	var latLong = new google.maps.LatLng($lat, $lng);
   var mapOptions = {
     zoom: 17,
     center: latLong
   };
-	var map = new google.maps.Map(document.getElementById(\'map-canvas\'),
+	var map = new google.maps.Map(document.getElementById('map-canvas'),
 			mapOptions);
 	var marker = new google.maps.Marker({
     position: latLong,
     map: map,
-    title:"Festival of Code 2014"
+    title:\"$searchTerm\"
 	});
 }
 
 initialize();
-</script>';
+</script>";
 	}
 }
 ?>
