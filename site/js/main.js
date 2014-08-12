@@ -84,10 +84,14 @@ plugin.prototype={
 					var markup=$("<ln/>").addClass("plugin").addClass(this.url())
 						.append($("<header>|||<span class='pluginName'>"+this.name()+"</span></header>"))
 						.append(data.markup);
+					for ( var ind = 0; ind < pluginsGrid.$widgets.length; ind++){
+						if ( pluginsGrid.$widgets.eq(ind).attr('class').split(' ')[1] == this.url()){
+							pluginsGrid.resize_widget(pluginsGrid.$widgets.eq(ind), data.size[0], data.size[1]);
+						}
+					};
 					$('.' + this.url()).attr('title',this.name());
 					this.markup().empty();
 					this.markup().append(markup.contents());
-			pluginsGrid.resize_widget(pluginsGrid.$widgets.eq(pluginsGrid.$widgets.length - 1), data.size[0], data.size[1]);
 					if ( data.style != 'null' ) {
 						$("head").append("<style type='text/css'>"+data.style+"</style>");
 					}
@@ -116,6 +120,7 @@ plugin.prototype={
 		);
 	}
 }
+tiles = {};
 function getAvaliablePlugins(){
 	$.post("api/list.php",
 		{},
@@ -123,7 +128,7 @@ function getAvaliablePlugins(){
 			for(var i=0;i<data.length;i++){
 				var toAdd=new plugin({url:data[i],markup:$("<ln/>").addClass("plugin").addClass(data[i])});
 				console.log(pluginsGrid);
-				pluginsGrid.add_widget(toAdd.markup());
+				tiles[data[i]] = pluginsGrid.add_widget(toAdd.markup());
 				plugins.add(toAdd);
 				toAdd.get();
 			}
