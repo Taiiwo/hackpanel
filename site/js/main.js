@@ -14,7 +14,7 @@ var pluginsGrid = $(".tiles").gridster({
        	resize: {
        		enabled: true
        	}
-	}).data('gridster');
+}).data('gridster');
 $(".tiles").fadeOut(10);
 plugins.add=function(plugin){
 	for(var i=0;i<plugins.length;i++){
@@ -87,6 +87,7 @@ plugin.prototype={
 					$('.' + this.url()).attr('title',this.name());
 					this.markup().empty();
 					this.markup().append(markup.contents());
+			pluginsGrid.resize_widget(pluginsGrid.$widgets.eq(pluginsGrid.$widgets.length - 1), data.size[0], data.size[1]);
 					if ( data.style != 'null' ) {
 						$("head").append("<style type='text/css'>"+data.style+"</style>");
 					}
