@@ -86,6 +86,12 @@ plugin.prototype={
 						.append(data.markup);
 					for ( var ind = 0; ind < pluginsGrid.$widgets.length; ind++){
 						if ( pluginsGrid.$widgets.eq(ind).attr('class').split(' ')[1] == this.url()){
+							/* If 'move_widget' was a thing that gridster would let you do,
+								this code would fix plugins sometimes not resizing, but
+								it's obviously completely untested.
+							if ((pluginsGrid.$widgets.eq(ind).attr('data-col') - 1) + data.size[0] > 3{
+								pluginsGrid.move_widget(pluginsGrid.$widgets.eq(ind), -(3 - ((pluginsGrid.$widgets.eq(ind).attr('data-col') - 1) + data.size[0]));
+							}*/
 							pluginsGrid.resize_widget(pluginsGrid.$widgets.eq(ind), data.size[0], data.size[1]);
 						}
 					};
