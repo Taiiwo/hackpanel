@@ -3,9 +3,11 @@
 		"default": "Young Rewired State",
 		"irc": "#yrs",
 		"description": "An event.",
-		"startDate": "28/07/2014",
-		"endDate": "03/08/2014",
+		"start-date": "28/07/2014",
+		"end-date": "03/08/2014",
 		"twitterAccount": "@youngrewired",
+		"lat": 50.375715,
+		"lng": -4.139280,
 		"twitterHashtags": [
 			"#yrsfoc",
 			"#yrs2014"
@@ -18,6 +20,8 @@
 		"start-date": "25/12/2014",
 		"end-date": "01/01/2015",
 		"twitterAccount": "@testHack",
+		"lat": 0,
+		"lng": 0,
 		"twitterHashtags": [
 			"#testhack"
 		]
