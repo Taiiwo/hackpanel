@@ -147,7 +147,7 @@ getAvaliablePlugins();
 
 
 
-search={
+var search={
 	options:[],
 	loadJSON:function(){
 		$.ajax("api/searches.json",{
@@ -202,7 +202,9 @@ search={
 				resultsMarkup.append(individualResult);
 			}
 		}
-    resultsMarkup.hide();
+    if($("#search:focus").length==0){
+      resultsMarkup.hide();
+    }
     $("#search").focus(resultsMarkup,function(e){
       e.data.slideDown();
     })
