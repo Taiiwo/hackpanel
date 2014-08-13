@@ -192,7 +192,7 @@ search={
 				individualResult.click(result,function(e){
 					hackathon=e.data;
 					$("#search").val(e.data.default);
-					$(".search-items").slideUp();
+					$("#search").blur();
 					$(".tiles").fadeIn(500);
 					$("#search").focus(function(){$(".search-items").slideDown()});
 					for(var i=0;i<plugins.length;i++){
@@ -202,6 +202,13 @@ search={
 				resultsMarkup.append(individualResult);
 			}
 		}
+    resultsMarkup.hide();
+    $("#search").focus(resultsMarkup,function(e){
+      e.data.slideDown();
+    })
+    $("#search").blur(resultsMarkup,function(e){
+      e.data.slideUp();
+    })
 		resultsMarkup.replaceAll($(".search-items"));
 	}
 }
