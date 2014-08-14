@@ -18,14 +18,29 @@
   <body>
     <div class="lightbox" id="settings">
       <div class="content">
-        <div id="settingsClose"></div>
+        <div id="settingsClose">X</div>
       </div>
     </div>
     <div class="lightbox" id="add">
       <div class="content">
-        <div id="addClose"></div>
+        <div id="addClose">X</div>
+        <h1 class="addHeading">Add an event.</h1>
         <form>
-
+          <label for="eventName">Event name:</label>
+          <input id="eventName" type="text" placeholder="Event name"/>
+          <label for="eventDescription">Event description:</label>
+          <textarea id="eventDescription" rows="10" cols="50"></textarea>
+          <label for="eventImage">Event image:</label>
+          <input id="eventImage" type="file"/>
+          <label for="eventDate">Start date:</label>
+          <input id="EventDate" type="date"/>
+          <label for="eventDate">End date:</label>
+          <input id="eventDate" type="date"/>
+          <label for="eventHashtag">Event hashtag:</label>
+          <input id="eventHashtag" type="text" placeholder="Twitter Hashtag"/>
+          <label for="eventLocation">Event location:</label>
+          <input id="eventLocation" type="text" placeholder="Event location"/>
+          <input id="eventSubmit" type="submit"/>
         </form>
       </div>
     </div>
@@ -49,17 +64,6 @@
       <div class="items-container">
         <div class="search-items">
           <!-- EVENTS ADDED HERE -->
-        </div>
-      </div>
-      <div id="addLightbox">
-        <div id="content">
-          <form>
-					</form>
-        </div>
-      </div>
-      <div id="settingsLightbox">
-        <div id="content">
-
         </div>
       </div>
       <div class="container">

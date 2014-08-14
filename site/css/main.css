@@ -8,7 +8,7 @@ body {
   padding: 0;
 }
 
-input:focus {
+input:focus, textarea:focus {
   outline: none;
 }
 
@@ -123,13 +123,26 @@ body {
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  width: 550px;
-  margin: 0 auto;
-  display: block;
-  height: 350px;
+  width: auto;
+  height: auto;
   text-align: left;
   display: inline-block;
   vertical-align: middle;
+}
+
+.addHeading {
+  font-family: 'Roboto';
+  font-weight: normal;
+  padding: 5px;
+  text-align: center
+}
+
+.content input, .content textarea {
+  display: block;
+}
+
+#eventDescription {
+   resize: none;
 }
 
 #addClose, #settingsClose {
@@ -141,6 +154,10 @@ body {
   float: right;
   width: 30px;
   height: 30px;
+  line-height: 30px;
+  font-family: 'Roboto';
+  text-align: center;
+  font-size: 24px;
   border: solid 5px #000000;
   transition: all .25s;
   -moz-transition: all .25s;
