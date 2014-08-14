@@ -217,14 +217,8 @@ var search={
 						);
         //when it's clicked auto fill the field
 				individualResult.click(result,function(e){
-					hackathon=e.data;
 					$("#search").val(e.data.default);
-					$("#search").blur();
-					$(".tiles").fadeIn(500);
-					$("#search").focus(function(){$(".search-items").slideDown()});
-					for(var i=0;i<plugins.length;i++){
-						plugins[i].get();
-					}
+					$("#searchBox").submit();
 				})
 				resultsMarkup.append(individualResult);
 			}
@@ -248,4 +242,27 @@ search.loadJSON();
 $("#search").bind('input',function(){
 	search.loadResults(this.value);
 });
+$("#searchBox").submit(function(e){
+  e.preventDefault();
+  var searchTerm=$(this).find("#search").val()
+  var found=false;
+  for(var i=0;i<search.options.length;i++){
+    if(search.options[i].default==searchTerm){
+      found=true;
+      break;
+    }
+  }
+  if(found){
+    hackathon=search.options[i];
+  }
+  else{
+    hackathon={default:searchTerm};
+  }
+  for(var i=0;i<plugins.length;i++){
+    plugins[i].get();
+  }
+  $(".tiles").fadeIn(500);
+  $("#search").blur();
+  $("#search").focus(function(){$(".search-items").slideDown()});
+})
 });
