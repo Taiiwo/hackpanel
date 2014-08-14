@@ -10,7 +10,7 @@ var pluginsGrid = $(".tiles").gridster({
 	min_cols: 1,
 	max_cols: 3,
 	draggable: {
-		handle: 'header'
+		handle: 'header,header>*'
 	},
        	resize: {
        		enabled: true
