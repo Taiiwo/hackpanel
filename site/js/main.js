@@ -146,9 +146,10 @@ getAvaliablePlugins();
 
 
 
-
+//Controls the auto complete functionality
 var search={
 	options:[],
+  //gets the known events from the server
 	loadJSON:function(){
 		$.ajax("api/searches.json",{
 			dataType:'json',
@@ -158,9 +159,14 @@ var search={
 			}
 		})
 	},
+
+  //processes and sort the results
 	loadResults:function(term){
 		if(term==undefined)var term="";
 		var resultsMarkup=$("<div/>").addClass("search-items");
+
+    //loop through events and check if search term is found
+    //in any of the fields
 		for(var i=0;i<search.options.length;i++){
 			var found=false;
 			var keys=Object.keys(search.options[i]);
@@ -179,6 +185,7 @@ var search={
 				}
 			}
 			if(found==true){
+        //since it's a match add the result to the list
 				var result=search.options[i];
 				var individualResult=$("<div/>").addClass("searchResult").append(
 						$("<div><div/></div>").find('div').append(
@@ -187,6 +194,7 @@ var search={
 								$("<span/>").addClass("dates").text(result.startDate+"-"+result.endDate)
 							)
 						);
+        //when it's clicked auto fill the field
 				individualResult.click(result,function(e){
 					hackathon=e.data;
 					$("#search").val(e.data.default);
@@ -200,6 +208,8 @@ var search={
 				resultsMarkup.append(individualResult);
 			}
 		}
+
+    //show and hide the suggestions depending on search field focus
     if($("#search:focus").length==0){
       resultsMarkup.hide();
     }
@@ -212,6 +222,7 @@ var search={
 		resultsMarkup.replaceAll($(".search-items"));
 	}
 }
+
 search.loadJSON();
 $("#search").bind('input',function(){
 	search.loadResults(this.value);
