@@ -1,7 +1,8 @@
 $(function(){
 var hackathon = [];
-var plugins = [];
 var log = $('.tiles');
+
+//creates the drag and drop grid
 var pluginsGrid = $(".tiles").gridster({
        	widget_base_dimensions: [290, 290],
        	widget_margins: [15, 15],
@@ -16,6 +17,9 @@ var pluginsGrid = $(".tiles").gridster({
        	}
 }).data('gridster');
 $(".tiles").fadeOut(10);
+
+//this is where the plugins are stored
+var plugins = [];
 plugins.add=function(plugin){
 	for(var i=0;i<plugins.length;i++){
 		if(plugin.url()==plugins[i].url()){
@@ -25,6 +29,8 @@ plugins.add=function(plugin){
 	}
 	plugins.push(plugin);
 }
+
+//The plugin object
 plugin=function(properties){
 	if(properties!=undefined){
 		this.props={};
@@ -36,6 +42,7 @@ plugin=function(properties){
 	return this;
 }
 plugin.prototype={
+  //set or retrieve properties
 	name:function(name){
 		if(name==undefined){
 			return this.props.name;
@@ -72,7 +79,10 @@ plugin.prototype={
 			return this;
 		}
 	},
+
+  //the update function of the plugin
 	get:function(){
+    //fetch the latest plugin info from the server
 		$.ajax("api/get.php",
 			{
 				data:{
@@ -81,9 +91,12 @@ plugin.prototype={
 				},
 				success:function(data){
 					this.name(data.title);
+          //create the plugin box and populate
 					var markup=$("<ln/>").addClass("plugin").addClass(this.url())
 						.append($("<header>|||<span class='pluginName'>"+this.name()+"</span></header>"))
 						.append(data.markup);
+
+          //place plugin
 					for ( var ind = 0; ind < pluginsGrid.$widgets.length; ind++){
 						if ( pluginsGrid.$widgets.eq(ind).attr('class').split(' ')[1] == this.url()){
 							/* If 'move_widget' was a thing that gridster would let you do,
@@ -95,12 +108,16 @@ plugin.prototype={
 							pluginsGrid.resize_widget(pluginsGrid.$widgets.eq(ind), data.size[0], data.size[1]);
 						}
 					};
+
 					$('.' + this.url()).attr('title',this.name());
+
+          //insert plugin box into the page markup
 					this.markup().empty();
 					this.markup().append(markup.contents());
 					if ( data.style != 'null' ) {
 						$("head").append("<style type='text/css'>"+data.style+"</style>");
 					}
+          
 					//If data.scripts is a non-null array
 					if(typeof(data.scripts)==typeof([])&data.scripts!=null){
 						//loop through each script
@@ -126,6 +143,8 @@ plugin.prototype={
 		);
 	}
 }
+
+
 tiles = {};
 function getAvaliablePlugins(){
 	$.post("api/list.php",
