@@ -24,8 +24,12 @@ class githubLanguages {
 	function update($searchTerm){
 		require_once '../../lib/searchTerm.php';
 		$alias = getSearchAlias($searchTerm, array('irc'));
-		$query = urlencode( $alias['irc'] );
-		//$query = urlencode( (getSearchAlias($searchTerm, array('irc'))['irc'] );
+		if ($alias['irc'] != NULL){
+			$query = urlencode( $alias['irc'] );
+		}
+		else {
+			$query = urlencode($searchTerm);
+		}
 		$url = "https://api.github.com/search/repositories?q=$query&sort=updated&order=desc";
 		//Begin messy curl (This is the equivalent of $content = file_get_contents($url);, but with a useragent)
 		$ch = curl_init();

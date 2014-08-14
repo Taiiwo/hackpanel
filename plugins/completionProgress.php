@@ -16,9 +16,9 @@ class completionProgress {
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
 		require_once('../../lib/searchTerm.php');
-		$details = getSearchAlias($searchTerm, array('start-date', 'end-date'));
-		$totalTime = strtotime($details['end-date']) - strtotime($details['start-date']);
-		$timeFromStart = time() - $details['start-date'];
+		$details = getSearchAlias($searchTerm, array('startDate', 'endDate'));
+		$totalTime = strtotime($details['endDate']) - strtotime($details['startDate']);
+		$timeFromStart = time() - $details['startDate'];
 		$time = $timeFromStart / $totalTime * 100;
 		if ($time < 0){
 			$time = 0;
@@ -28,9 +28,9 @@ class completionProgress {
 		}
 		return "
 <h1 class=\"center large\">$time%</h1><p>
-start: ". $details['start-date'] ."
+start: ". $details['startDate'] ."
 
-end: ". $details['end-date'] ."</p>
+end: ". $details['endDate'] ."</p>
 ";
 	}
 }

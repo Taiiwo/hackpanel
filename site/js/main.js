@@ -185,8 +185,6 @@ var search={
 							$("<h2/>").text(result.default)
 							).append(
 								$("<span/>").addClass("dates").text(result.startDate+"-"+result.endDate)
-							).append(
-								$("<span/>").addClass("description").text(result.description)
 							)
 						);
 				individualResult.click(result,function(e){

@@ -1,0 +1,20 @@
+.infoContainer {
+  
+}
+
+.infoPlugin h1 {
+  font-size: 32px;
+  text-align: center;
+}
+
+.infoPlugin p {
+  font-size: 18px;
+  text-align: center;
+  padding: 30px;
+}
+
+.gridster .infoPlugin .player  {
+    border: none!important;
+    opacity: 0.6;
+    margin: 15px 0px 0px 15px;
+}

@@ -85,9 +85,72 @@ body {
   -webkit-transition: .25s;
 }
 
+#add-button:hover, #settings-button:hover {
+  cursor: pointer;
+}
+
 #add-button img, #settings-button img {
   height: 20px;
   margin: 5px;
+}
+
+
+#add, #settings {
+  display: none;
+}
+
+.lightbox {
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+.lightbox:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  width: 550px;
+  margin: 0 auto;
+  display: block;
+  height: 350px;
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#addClose, #settingsClose {
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  margin: -35px;
+  background-color: #ffffff;
+  float: right;
+  width: 30px;
+  height: 30px;
+  border: solid 5px #000000;
+  transition: all .25s;
+  -moz-transition: all .25s;
+  -webkit-transition: all .25s;
+}
+
+#addClose:hover, #settingsClose:hover {
+  background-color: #000000;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 #add-box, #settings-box {
@@ -125,12 +188,12 @@ body {
 }
 
 #main-content {
-  margin-top: 40px;
+  margin-top: 30px;
 }
+
 ul {
   list-style-type: none;
 }
-
 
 .controls {
     margin-bottom: 20px;
