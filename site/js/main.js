@@ -239,13 +239,19 @@ var search={
 }
 
 search.loadJSON();
+
+//update search terms when the search box is changed
 $("#search").bind('input',function(){
 	search.loadResults(this.value);
 });
+
+//load plugins when search term is submitted
 $("#searchBox").submit(function(e){
   e.preventDefault();
   var searchTerm=$(this).find("#search").val()
   var found=false;
+
+  //is it a known hackathon
   for(var i=0;i<search.options.length;i++){
     if(search.options[i].default==searchTerm){
       found=true;
@@ -256,11 +262,14 @@ $("#searchBox").submit(function(e){
     hackathon=search.options[i];
   }
   else{
+    //otherwise just let it search itself
     hackathon={default:searchTerm};
   }
   for(var i=0;i<plugins.length;i++){
     plugins[i].get();
   }
+
+  //animate tiles in and autocomplete out
   $(".tiles").fadeIn(500);
   $("#search").blur();
   $("#search").focus(function(){$(".search-items").slideDown()});
