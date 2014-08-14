@@ -117,7 +117,7 @@ plugin.prototype={
 					if ( data.style != 'null' ) {
 						$("head").append("<style type='text/css'>"+data.style+"</style>");
 					}
-          
+
 					//If data.scripts is a non-null array
 					if(typeof(data.scripts)==typeof([])&data.scripts!=null){
 						//loop through each script
@@ -150,6 +150,7 @@ function getAvaliablePlugins(){
 	$.post("api/list.php",
 		{},
 		function(data){
+      //loop through the available plugins and add them to the plugins array
 			for(var i=0;i<data.length;i++){
 				var toAdd=new plugin({url:data[i],markup:$("<ln/>").addClass("plugin").addClass(data[i])});
 				console.log(pluginsGrid);
@@ -161,6 +162,7 @@ function getAvaliablePlugins(){
 		'json'
 	);
 }
+//initialise all the plugins
 getAvaliablePlugins();
 
 
