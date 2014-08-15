@@ -1,0 +1,19 @@
+.ideaGenerator input {
+  border: solid 3px #ffffff;
+  background: none;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 10px;
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 auto;
+  display: block;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.ideaGenerator input:hover {
+  background-color: #ffffff;
+  color: #e00032;
+}
