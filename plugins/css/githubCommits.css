@@ -12,6 +12,7 @@
 .githubCommits li:nth-child(2n) {
     background-color: rgba(0,0,0,0.15);
 }
+
 .githubCommits li:nth-child(2n-1) {
     background-color: rgba(255,255,255,0.15);
 }
