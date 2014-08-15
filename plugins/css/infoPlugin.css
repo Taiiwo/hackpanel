@@ -1,22 +1,22 @@
 .infoContainer {
-
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  background-color: rgba(0,0,0,0.3);
+  width: 100%;
+  height: auto;
+  height: 250px;
 }
 
-.infoPlugin h1 {
+.infoContainer h1 {
   font-size: 32px;
-  text-align: center;
   text-shadow: 2px 2px #333333;
+  padding-top: 20px;
 }
 
-.infoPlugin p {
+.infoContainer p {
   font-size: 18px;
-  text-align: center;
-  padding: 30px;
   text-shadow: 2px 2px #333333;
-}
-
-.gridster .infoPlugin .player  {
-    border: none!important;
-    opacity: 0.6;
-    margin: 15px 0px 0px 15px;
+  width: 700px;
+  margin: 0 auto;
 }
