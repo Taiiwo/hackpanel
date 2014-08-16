@@ -17,8 +17,15 @@ class completionProgress {
 	function update($searchTerm){
 		require_once('../../lib/searchTerm.php');
 		$details = getSearchAlias($searchTerm, array('startDate', 'endDate'));
-		$totalTime = strtotime($details['endDate']) - strtotime($details['startDate']);
-		$timeFromStart = time() - $details['startDate'];
+		//Replace /s for -s to abide by php's weird datetime formatting
+		$details['endDate'] = str_replace('/','-',$details['endDate']);
+		$details['startDate'] = str_replace('/','-',$details['startDate']);
+		//calculate a few values about the dates
+		//total event length
+		$totalTime = strtotime($details['endDate'])- strtotime($details['startDate']);
+		//event time elapsed
+		$timeFromStart = time() - strtotime($details['startDate']);
+		//percentage completed
 		$time = $timeFromStart / $totalTime * 100;
 		if ($time < 0){
 			$time = 0;
@@ -26,12 +33,15 @@ class completionProgress {
 		if ($time > 100){
 			$time = 100;
 		}
-		return "
-<h1 class=\"center large\">$time%</h1><p>
-start: ". $details['startDate'] ."
-
-end: ". $details['endDate'] ."</p>
-";
+		$retMe = array();
+		$retMe[] = "<h1 class=\"center large\">". round($time, 3)."%</h1>";
+		$retMe[] = "<p>". $details['startDate'] ." - ". $details['endDate']."</p>";
+		if ($time != 100 && $time != 0){
+			$retMe[] = "<p>Time elapsed: ". round($timeFromStart / 60 / 60, 3) ." Hours</p>";
+			$retMe[] = "<p>Time left: ". round(($totalTime - $timeFromStart) / 60 / 60, 3) ." Hours</p>";
+		}
+		$retMe[] = "<p>Total time: ". round($totalTime / 60 / 60, 3) ." Hours</p>";
+		return implode('', $retMe);
 	}
 }
 ?>
