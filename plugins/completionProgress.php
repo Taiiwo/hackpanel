@@ -15,6 +15,7 @@ class completionProgress {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
+		date_default_timezone_set('Europe/London');
 		require_once('../../lib/searchTerm.php');
 		$details = getSearchAlias($searchTerm, array('startDate', 'endDate'));
 		//Replace /s for -s to abide by php's weird datetime formatting
