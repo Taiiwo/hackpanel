@@ -34,13 +34,13 @@ class completionProgress {
 			$time = 100;
 		}
 		$retMe = array();
-		$retMe[] = "<h1 class=\"center large\">". round($time, 3)."%</h1>";
+		$retMe[] = "<div id=\"completionProgress\"><h1 class=\"center large\">". round($time, 3)."%</h1>";
 		$retMe[] = "<p>". $details['startDate'] ." - ". $details['endDate']."</p>";
 		if ($time != 100 && $time != 0){
 			$retMe[] = "<p>Time elapsed: ". round($timeFromStart / 60 / 60, 3) ." Hours</p>";
 			$retMe[] = "<p>Time left: ". round(($totalTime - $timeFromStart) / 60 / 60, 3) ." Hours</p>";
 		}
-		$retMe[] = "<p>Total time: ". round($totalTime / 60 / 60, 3) ." Hours</p>";
+		$retMe[] = "<p>Total time: ". round($totalTime / 60 / 60, 3) ." Hours</p></div>";
 		return implode('', $retMe);
 	}
 }
