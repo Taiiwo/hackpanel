@@ -21,15 +21,8 @@ ul {
   background-color: #e00032;
 }
 
-.container {
-  max-width: 100%;
-  margin: 0 auto;
-  display: block;
-  float: none;
-}
-
 .logo {
-  font-family: 'Titan One' sans-serif;
+  font-family: 'Titan One', sans-serif;
   font-weight: normal;
   color: #ffffff;
   text-align: center;
@@ -39,32 +32,71 @@ ul {
 
 #header-elements {
   margin: 0 auto;
-  max-width: 960px;
   display: block;
   float: none;
+  max-width: 800px;
+}
+
+#searchBox, .search-items {
+  width: 640px;
 }
 
 #searchBox {
-  margin: 0 auto;
-  max-width: 720px;
-  display: block;
-  float: none;
+  display: inline-block;
+}
+
+.search-items {
+  box-shadow: 0px 2px 3px #7f8c8d;
+  position: relative;
+  z-index: 1000;
+  padding: 0px 10px;
 }
 
 #search {
-  width: 90%;
+  width: 100%;
   height: 35px;
   font-size: 20px;
-  font-family: 'Roboto' sans-serif;
-  padding: 0px 10px;
+  font-family: 'Roboto', sans-serif;
   border: none;
   color: #7f8c8d;
   box-shadow: 0px 2px 3px #7f8c8d;
-  display: inline;
   background-color: #ffffff;
   transition: box-shadow .2s;
   -moz-transition: box-shadow .2s;
   -webkit-transition: box-shadow .2s;
+  padding: 0px 10px;
+}
+
+.searchResult {
+  width: 100%;
+  padding: 15px 10px;
+  color: #333333;
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff;
+  margin-left: -10px;
+  text-align: center;
+}
+
+.searchResult:hover {
+  background-color: #efefef;
+}
+
+.searchResult h2 {
+  font-weight: bold;
+}
+
+.searchResult span {
+  padding-right: 10px;
+}
+
+.searchResult:hover {
+  cursor: pointer;
+}
+
+#buttons {
+  display: inline;
+  width: auto;
+  height: auto;
 }
 
 #add-button, #settings-button {
@@ -78,12 +110,12 @@ ul {
   width: 30px;
   height: 30px;
   float: right;
-  margin-top: -35px;
-  margin-right: 20px;
+  margin-left: 20px;
   transition: .25s;
   -moz-transition: .25s;
   -webkit-transition: .25s;
 }
+
 
 #add-button:hover, #settings-button:hover {
   cursor: pointer;
@@ -93,7 +125,6 @@ ul {
   height: 20px;
   margin: 5px;
 }
-
 
 #add, #settings {
   display: none;
@@ -134,7 +165,7 @@ ul {
   font-family: 'Roboto';
   font-weight: normal;
   padding: 5px;
-  text-align: center
+  text-align: center;
 }
 
 .content input, .content textarea {
@@ -170,54 +201,11 @@ ul {
   cursor: pointer;
 }
 
-#add-box, #settings-box {
-  display: none
-}
-
-.searchResult:nth-child(2n) {
-  background-color: #EDEDED
-}
-
-.searchResult {
-  width: 100%;
-  padding: 15px 20px;
-  color: #2c3e50;
-  font-family: 'Roboto' sans-serif;
-}
-
-.searchResult > div {
-  max-width: 960px;
-  margin: 0 auto;
-  display: block;
-  float:none;
-}
-
-.searchResult h2 {
-  font-weight: bold;
-}
-
-.searchResult span {
-  padding-right: 10px;
-}
-
-.searchResult:hover {
-  cursor: pointer;
-}
-
 #main-content {
   margin-top: 30px;
 }
 
-.tiles {
-  margin: auto;
-  display: block;
-  float: none;
-  max-width: 960px !important;
-  width: 100% !important;
-}
-
 .gridster {
-  margin: 0 auto;
   transition: all .6s;
   -moz-transition: all .6s;
   -webkit-transition: all .6s;
@@ -232,18 +220,15 @@ ul {
 }
 
 .gridster .preview-holder {
-    margin: 15px 0px 0px 15px;
+  margin: 15px 0px 0px 15px;
 }
 
 .plugin {
   background-color: #e00032;
   width: 290px;
-  margin: 15px;
-  float: left;
   color: #ffffff;
-  font-family: 'Roboto' sans-serif;
+  font-family: 'Roboto', sans-serif;
   box-shadow: 0px 2px 10px #7f8c8d;
-  cursor: pointer;
 }
 
 .plugin h1,
@@ -258,66 +243,11 @@ ul {
 
 header {
   padding: 10px;
+  height: 20px;
+  cursor: pointer;
 }
 
 header span {
 	padding-right: 5px;
   float: right;
-}
-
-@media (max-width:900px) {
-  #top-bar {
-    height: 200px;
-  }
-
-  .logo {
-    font-size: 56px;
-    margin-bottom: 5px;
-  }
-
-  #add-button, #settings-button {
-    display: none;
-  }
-
-  #searchBox {
-    margin: 0 auto;
-    max-width: 720px;
-    display: block;
-    float: none;
-  }
-
-  #search {
-    margin-top: 15px;
-    width: 100%;
-  }
-
-  #buttonBoxes {
-    margin: 0 auto;
-    display: block;
-    float: none;
-    width: 100%;
-    text-align: center;
-  }
-
-  #add-box, #settings-box {
-    background-color: #03a9f4;
-    color: #ffffff;
-    width: 110px;
-    height: 50px;
-    float: none;
-    margin: -20px 10px 0px 10px;
-    transition: .25s;
-    -moz-transition: .25s;
-    -webkit-transition: .25s;
-    display: inline-block;
-  }
-
-  #add-box img, #settings-box img {
-    height: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15px;
-    display: block;
-    float: none;
-  }
 }

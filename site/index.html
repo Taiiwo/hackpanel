@@ -29,7 +29,7 @@
           <label for="eventName">Event name:</label>
           <input id="eventName" type="text" placeholder="Event name"/>
           <label for="eventDescription">Event description:</label>
-          <textarea id="eventDescription" rows="10" cols="50"></textarea>
+          <textarea id="eventDescription" maxlength="140" rows="10" cols="50"></textarea>
           <label for="eventImage">Event image:</label>
           <input id="eventImage" type="file"/>
           <label for="eventDate">Start date:</label>
@@ -45,34 +45,28 @@
       </div>
     </div>
     <div id="top-bar">
-      <div class="container">
-        <h1 class="logo">HackPanel</h1>
-        <div id="buttonBoxes">
-          <div id="add-box"><img src="img/add.png"></div>
-          <div id="settings-box"><img src="img/cog.png"></div>
-        </div>
-        <div id="header-elements">
-          <form id="searchBox" action="" method="GET">
-            <input id="search" placeholder="search for an event" type="text" name="search" autocomplete="off">
-          </form>
+      <h1 class="logo">HackPanel</h1>
+      <div id="header-elements">
+        <form id="searchBox" action="" method="GET">
+          <input id="search" placeholder="search for an event" type="text" name="search" autocomplete="off">
+          <div class="items-container">
+            <div class="search-items">
+              <!-- EVENTS ADDED HERE -->
+            </div>
+          </div>
+        </form>
+        <div id="buttons">
           <div id="settings-button"><img src="img/cog.png"></div>
           <div id="add-button"><img src="img/add.png"></div>
         </div>
       </div>
     </div>
     <div id="main-content">
-      <div class="items-container">
-        <div class="search-items">
-          <!-- EVENTS ADDED HERE -->
-        </div>
-      </div>
-      <div class="container">
-        <!-- PLUGINS ADDED HERE -->
 				<div class="gridster ready">
-					<ul class="tiles" id="tileBound">
+					<ul class="tiles">
+            <!-- PLUGINS ADDED HERE -->
 					</ul>
 				</div>
-      </div>
     </div>
 	  <script src="js/gridster.dev.js" type="text/javascript" charset="utf-8"></script>
 </body>
