@@ -1,4 +1,4 @@
-<?php //This class MUST be called the same as the file name without ".php" 
+<?php //This class MUST be called the same as the file name without ".php"
 class githubCommits {
 	//A short description of your plugin
 	public $title = "Live Git Commits";
@@ -34,7 +34,7 @@ class githubCommits {
 							<a href='".$commit->html_url."'>".$git_user."/".$git_repo."</a>
 						</div>
 						<div class='commitFooter'>
-							<span class='commitMessage'>".$commit->commit->message."</span>
+							<span class='commitMessage'>".$commit->commit->message."</span><br >
 							<span class='commitTime'>".$commitTime->format("d-m-Y H:i:s")."</span>
 						</div>
 					</li>";
