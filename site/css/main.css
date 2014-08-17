@@ -16,28 +16,6 @@ ul {
   list-style-type: none;
 }
 
-#alphaBar {
-  background-color: #e00032;
-  color: #ffffff;
-  font-family: 'Roboto';
-  width: 100%;
-  text-align: center;
-  padding: 10px 0px;
-  position: absolute;
-  bottom: 0;
-  z-index: 1000;
-  font-size: 14px;
-}
-
-#alphaBar p {
-  display: inline;
-  font-weight: 100;
-}
-
-#alphaBar a {
-  color: #ffffff;
-}
-
 #top-bar {
   height: 150px;
   background-color: #e00032;
@@ -274,4 +252,26 @@ header {
 header span {
 	padding-right: 5px;
   float: right;
+}
+
+#alphaBar {
+  background-color: #e00032;
+  color: #ffffff;
+  font-family: 'Roboto';
+  width: 100%;
+  text-align: center;
+  padding: 10px 0px;
+  position: absolute;
+  bottom: 0;
+  z-index: 1000;
+  font-size: 14px;
+}
+
+#alphaBar p {
+  display: inline;
+  font-weight: 100;
+}
+
+.version {
+  font-weight: 900;
 }

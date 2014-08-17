@@ -5,6 +5,10 @@
   padding-bottom: 10px;
 }
 
+.githubCommits li {
+  padding: 10px;
+}
+
 .githubCommits a {
   color: rgb(189, 189, 189);
 }
