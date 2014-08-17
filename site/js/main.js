@@ -260,6 +260,7 @@ $("#searchBox").submit(function(e){
   }
   if(found){
     hackathon=search.options[i];
+    $('#alphaBar').fadeOut(500);
   }
   else{
     //otherwise just let it search itself
