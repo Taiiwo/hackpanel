@@ -17,7 +17,9 @@
   <script>google.load("visualization", "1", {packages:["corechart"]});</script>
   <script>
      $.getJSON("https://api.github.com/repos/taiiwo/hackpanel/commits", function(data) {
-       $('.version').text(data[0].sha);
+       var hash = data[0].sha;
+       $('.version').text(hash);
+       $('.version').attr("href","https://github.com/Taiiwo/hackpanel/commit/" + hash)
      });
   </script>
 </head>
@@ -76,7 +78,7 @@
 				</div>
     </div>
     <div id="alphaBar">
-      <p>This site is still in alpha stages. Latest version: </p><div class="version"></div>
+      <p>This site is still in alpha stages. Latest version: </p><a class="version"></a>
     </div>
 	  <script src="js/gridster.dev.js" type="text/javascript" charset="utf-8"></script>
 </body>

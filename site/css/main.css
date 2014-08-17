@@ -260,6 +260,14 @@ header span {
   font-weight: 100;
 }
 
+#alphaBar a {
+  color: #ffffff;
+}
+
+#alphaBar a:hover {
+  opacity: 0.8;
+}
+
 .version {
   font-weight: 900;
 }
