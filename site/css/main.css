@@ -262,6 +262,7 @@ header span {
 
 #alphaBar a {
   color: #ffffff;
+  display: block;
 }
 
 #alphaBar a:hover {
