@@ -16,23 +16,8 @@
   <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
   <script>google.load("visualization", "1", {packages:["corechart"]});</script>
   <script>
-     $(function() {
-       var username = 'taiiwo';
-       var repo = 'hackpanel';
-       var container = $('.version');
-       var limit = 1;
-       return $.ajax("https://api.github.com/repos/" + username + "/" + repo + "/commits", {
-         data: {
-           per_page: limit
-         },
-         dataType: "json",
-         type: "get"
-       }).success(function(response) {
-         $(container).empty;
-         return $(response).each(function(index, result) {
-           return $(container).append("<a class=\"commit\" href=\"https://github.com/" + username + "/" + repo + "/commit/" + result.sha + "\" target=\"_blank\"> " + result.sha + "</a>");
-         });
-       });
+     $.getJSON("https://api.github.com/repos/taiiwo/hackpanel/commits", function(data) {
+       $('.version').text(data[0].sha);
      });
   </script>
 </head>
@@ -91,7 +76,7 @@
 				</div>
     </div>
     <div id="alphaBar">
-      <p>This site is still in alpha stages. Current version: </p><a class="version"></a>
+      <p>This site is still in alpha stages. Current version: </p><p href="" class="version"></p>
     </div>
 	  <script src="js/gridster.dev.js" type="text/javascript" charset="utf-8"></script>
 </body>
