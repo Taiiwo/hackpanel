@@ -16,31 +16,37 @@ class twitterPlugin {
 	}
 	//This function will be executed every time your plugin is updated.
 	function update($searchTerm){
-		$aliases=getSearchAlias($searchTerm,$this->categories);
-		return '
-<div class="twitter-timeline" href="https://twitter.com/hashtag/YRSFoC" data-widget-id="494093261502312451"></div>
-<script>
-	! function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0],
-			p = /^http:/.test(d.location) ? \'http\':\'https\';
-    		if (!d.getElementById(id)) {
-			js = d.createElement(s);
-			js.id = id;
-			js.src = p + "://platform.twitter.com/widgets.js";
-			fjs.parentNode.insertBefore(js, fjs);
+		require_once('../../lib/twitterApi.php');
+		require_once('../../lib/pluginUtils.php');
+		$aliases=getSearchAlias($searchTerm, array('twitterHashtags'));
+		$settings = array(
+			'oauth_access_token' => "227461689-4iy4cpxkgArKyMgex2cERrrt5URaT8957iJcHGUO",
+			'oauth_access_token_secret' => "OgV7YuzTfFAF5FxFkeB0ZGvnJxY7CVUvM35fqDbWmatCt",
+			'consumer_key' => "W6vC0juzsnu8A3I93Hu8PLIbd",// not sure if these are right
+			'consumer_secret' => "MDE3HEG9aHK4j3mguMD3SIyGWJBvvwlDwCvPRSqA5z3MWPWhra"//^
+		);
+		$url = 'https://api.twitter.com/1.1/search/tweets.json';
+		$urlHashtags = array();
+		foreach ($aliases['twitterHashtags'] as $tag){
+			array_push($urlHashtags, urlencode($tag));
 		}
-	}(document,"script","twitter-wjs");
-	hashtags='.json_encode($aliases['twitterHashtags']).';
-	account='.json_encode($aliases['twitterAccount']).';
-	twttr.widgets.createTimeline(
-		"494093261502312451",
-		document.getElementsByClassName("twitter-timeline")[0],
-		{
-			hashtags:hashtags
+		$getfield = '?q=' . implode(',',$urlHashtags);
+		$requestMethod = 'GET';
+		$twitter = new TwitterAPIExchange($settings);
+		$tweets = json_decode($twitter->setGetfield($getfield)
+			->buildOauth($url, $requestMethod)
+			->performRequest());
+		$retMe = array();
+		foreach ($tweets->statuses as $tweet){
+			$item = array();
+			$item[] = $tweet->user->name;// title
+			$item[] = "https://twitter.com/@" . $tweet->user->screen_name;// link location
+			$item[] = $tweet->user->screen_name;// link title
+			$item[] = htmlifyLinks($tweet->text);// tweet
+			$item[] = strtotime($tweet->created_at);// timestamp
+			$retMe[] = $item;
 		}
-	);
-</script>
-';
+		return styledList($retMe);
 	}
 }
 ?>
