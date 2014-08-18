@@ -438,8 +438,9 @@
                   return drag_timeout = false;
                 }), drag_rate);
               }
-              ui.position.left = e.pageX - $selected.parent().offset().left - selected_offset_x;
-              return ui.position.top = e.pageY - $selected.parent().offset().top - 15;
+              //ui.position.left = e.pageX - $selected.parent().offset().left - selected_offset_x;
+              //ui.position.top = e.pageY - $selected.parent().offset().top - selected_offset_y;
+	      return 1;
             },
             stop: function() {
               var $current_container, $original_container, $previous_container;
