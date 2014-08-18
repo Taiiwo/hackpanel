@@ -75,7 +75,7 @@ if (property_exists($thisClass, "size")){
 	$size = $thisClass->size;
 }
 else {
-	$size = array(1, 1);
+	$size = array(1, 250);
 }
 $returnObj = array("last_updated"=>time(),
 			"update"=>$thisClass->update,
