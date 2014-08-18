@@ -153,6 +153,7 @@ function reloadGrid(){
 		gutterX: 15,
 		gutterY: 15,
 		handle: "header",
+		centerWhileDragging: false,
 		animationSpeed: 300
 	});
 }
