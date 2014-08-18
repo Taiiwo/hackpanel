@@ -1,10 +1,9 @@
 $(function(){
 var hackathon = [];
-var log = $('.tiles');
+var log = $('.container');
 
 //creates the drag and drop grid
 
-$(".tiles").fadeOut(10);
 
 //this is where the plugins are stored
 var plugins = [];
@@ -139,7 +138,6 @@ function getAvaliablePlugins(){
 	);
 }
 //initialise all the plugins
-getAvaliablePlugins();
 
 
 
@@ -224,6 +222,7 @@ $("#search").bind('input',function(){
 //load plugins when search term is submitted
 $("#searchBox").submit(function(e){
   e.preventDefault();
+  getAvaliablePlugins();
   var searchTerm=$(this).find("#search").val()
   var found=false;
 
@@ -247,7 +246,7 @@ $("#searchBox").submit(function(e){
   }
 
   //animate tiles in and autocomplete out
-  $(".tiles").fadeIn(500);
+  $(".container").fadeIn(500);
   $("#search").blur();
   $("#search").focus(function(){$(".search-items").slideDown()});
 })
