@@ -36,20 +36,13 @@
         <div id="addClose">X</div>
         <h1 class="addHeading">Add an event.</h1>
         <form>
-          <label for="eventName">Event name:</label>
-          <input id="eventName" type="text" placeholder="Event name"/>
-          <label for="eventDescription">Event description:</label>
-          <textarea id="eventDescription" maxlength="140" rows="10" cols="50"></textarea>
-          <label for="eventImage">Event image:</label>
-          <input id="eventImage" type="file"/>
-          <label for="eventDate">Start date:</label>
-          <input id="EventDate" type="date"/>
-          <label for="eventDate">End date:</label>
-          <input id="eventDate" type="date"/>
-          <label for="eventHashtag">Event hashtag:</label>
-          <input id="eventHashtag" type="text" placeholder="Twitter Hashtag"/>
-          <label for="eventLocation">Event location:</label>
-          <input id="eventLocation" type="text" placeholder="Event location"/>
+          <label for="eventName">Event Name</label><input id="eventName" type="text" placeholder="event name"/>
+          <label for="eventDescription">Event Description</label><textarea id="eventDescription" placeholder="event description" maxlength="350"></textarea>
+          <div class="dates">
+            <div class="startDate"><label for="eventDate">Starts</label><input id="eventDate" type="date"/><input id="eventTime" type="time"/></div>
+            <div class="endDate"><label for="eventDate">Ends</label><input id="eventDate" type="date"/><input id="eventTime" type="time"/></div>
+          </div>
+          <label for="coverImage">Cover Image</label><input id="coverImage" type="file"/>
           <input id="eventSubmit" type="submit"/>
         </form>
       </div>
@@ -78,7 +71,7 @@
 				</div>
     </div>
     <div id="alphaBar">
-      <p>This site is still in alpha stages. Latest version: </p><a class="version"></a>
+      <p>This site is still in alpha stages. Latest commit: </p><a class="version"></a>
     </div>
 </body>
 </html>
