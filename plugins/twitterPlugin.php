@@ -18,6 +18,7 @@ class twitterPlugin {
 	function update($searchTerm){
 		require_once('../../lib/twitterApi.php');
 		require_once('../../lib/pluginUtils.php');
+		date_default_timezone_set('Europe/London');
 		$aliases=getSearchAlias($searchTerm, array('twitterHashtags'));
 		$settings = array(
 			'oauth_access_token' => "227461689-4iy4cpxkgArKyMgex2cERrrt5URaT8957iJcHGUO",
