@@ -152,6 +152,7 @@ function reloadGrid(){
 		minColumns: 1,
 		gutterX: 15,
 		gutterY: 15,
+		handle: "header",
 		animationSpeed: 300
 	});
 }
