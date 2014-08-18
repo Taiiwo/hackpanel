@@ -205,7 +205,7 @@ ul {
   margin-top: 30px;
 }
 
-.gridster {
+.shapeshift {
   transition: all .6s;
   -moz-transition: all .6s;
   -webkit-transition: all .6s;
@@ -219,11 +219,17 @@ ul {
   box-shadow: 0px 10px 20px #7f8c8d;
 }
 
-.gridster .preview-holder {
+.shapeshift .preview-holder {
   margin: 15px 0px 0px 15px;
 }
-
+.container {
+  position: relative;
+  width: 1000px;
+  margin: auto;
+}
 .plugin {
+  height: 290px;
+  position: absolute;
   background-color: #e00032;
   width: 290px;
   color: #ffffff;
