@@ -83,8 +83,17 @@ plugin.prototype={
 						.append($("<header>|||<span class='pluginName'>"+this.name()+"</span></header>"))
 						.append(data.markup);
 					$('.' + this.url()).attr('title',this.name());
-          //place plugin
+					if (data.size[0] > 1 || data.size[1] > 1){
+						$('.' + this.url())
+							.width(data.size[0] * 290 + (data.size[0] - 1) * 15)
+							.attr('data-ss-colspan', data.size[0])
+							.height(data.size[1] * 290 + (data.size[1] - 1) * 15)
+							.attr('data-ss-rowspan', data.size[1]);
+						reloadGrid();
 
+					}
+          //resize plugin
+					
 
           //insert plugin box into the page markup
 					this.markup().empty();
@@ -131,11 +140,20 @@ function getAvaliablePlugins(){
 				$('.container').append(toAdd.markup());
 				plugins.add(toAdd);
 				toAdd.get();
+				reloadGrid();
 			}
-			$('.container').shapeshift();
 		},
 		'json'
 	);
+}
+function reloadGrid(){
+	$('.container').shapeshift({
+		columns: 3,
+		minColumns: 1,
+		gutterX: 15,
+		gutterY: 15,
+		animationSpeed: 300
+	});
 }
 //initialise all the plugins
 
