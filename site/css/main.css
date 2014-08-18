@@ -205,12 +205,6 @@ ul {
   margin-top: 30px;
 }
 
-.shapeshift {
-  transition: all .6s;
-  -moz-transition: all .6s;
-  -webkit-transition: all .6s;
-}
-
 .gridster .gs-w {
   box-shadow: 0px 2px 10px #7f8c8d;
 }
@@ -223,8 +217,11 @@ ul {
   margin: 15px 0px 0px 15px;
 }
 .container {
+  transition: all .6s;
+  -moz-transition: all .6s;
+  -webkit-transition: all .6s;
   position: relative;
-  width: 100%;
+  max-width: 930px;
   margin: auto;
 }
 .plugin {
