@@ -80,12 +80,11 @@ plugin.prototype={
 						.append($("<header>|||<span class='pluginName'>"+this.name()+"</span></header>"))
 						.append(data.markup);
 					$('.' + this.url()).attr('title',this.name());
-					if (data.size[0] > 1 || data.size[1] > 1){
+					if (data.size[0] > 1 || data.size[1] != 250){
 						$('.' + this.url())
 							.width(data.size[0] * 290 + (data.size[0] - 1) * 15)
 							.attr('data-ss-colspan', data.size[0])
-							.height(data.size[1] * 290 + (data.size[1] - 1) * 15)
-							.attr('data-ss-rowspan', data.size[1]);
+							.height(40 + data.size[1])
 						reloadGrid();
 
 					}
