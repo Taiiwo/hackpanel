@@ -2,9 +2,6 @@ $(function(){
 var hackathon = [];
 var log = $('.container');
 
-//creates the drag and drop grid
-
-
 //this is where the plugins are stored
 var plugins = [];
 plugins.add=function(plugin){
