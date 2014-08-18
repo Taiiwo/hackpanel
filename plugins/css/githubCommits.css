@@ -1,7 +1,7 @@
 .githubCommits ul {
   overflow-y: scroll;
   overflow-x:  hidden;
-  height: calc(100%-50px);
+  height: 340px;
   width: 100%;
   padding-bottom: 10px;
 }
