@@ -6,7 +6,7 @@ class infoPlugin {
 	//an array of file locations for scripts you want to load
 	public $scripts = array();
 	//This sets plugin size
-	public $size = array(2, 1);
+	public $size = array(2, 250);
 	//This sets whether you want the plugin to be continually updated.
 	public $update = false;
 	// This function is run once at plugin initialisation

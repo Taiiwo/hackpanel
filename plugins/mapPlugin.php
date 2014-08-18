@@ -4,7 +4,7 @@ class mapPlugin {
 	//A short description of your plugin
 	public $title = "Map Plugin";
 	public $scripts = array();
-	public $size = array(2, 1);
+	public $size = array(2, 250);
 	//This sets whether you want the plugin to be continually updated.
 	public $update = false;
 	// This function is run once at plugin initialisation
