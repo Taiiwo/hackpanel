@@ -33,6 +33,7 @@
       cutoffStart: null,
       cutoffEnd: null,
       handle: false,
+      centerWhileDragging: true,
       cloneClass: "ss-cloned-child",
       activeClass: "ss-active-child",
       draggedClass: "ss-dragged-child",
@@ -438,9 +439,13 @@
                   return drag_timeout = false;
                 }), drag_rate);
               }
-              //ui.position.left = e.pageX - $selected.parent().offset().left - selected_offset_x;
-              //ui.position.top = e.pageY - $selected.parent().offset().top - selected_offset_y;
-	      return 1;
+	      if (options.centerWhileDragging){
+	        ui.position.left = e.pageX - $selected.parent().offset().left - selected_offset_x;
+	        return ui.position.top = e.pageY - $selected.parent().offset().top - selected_offset_y;
+              }
+              else {
+	        return 1;
+              }
             },
             stop: function() {
               var $current_container, $original_container, $previous_container;
