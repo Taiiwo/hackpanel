@@ -144,7 +144,6 @@ function getAvaliablePlugins(){
 }
 function reloadGrid(){
 	$('.container').shapeshift({
-		columns: 3,
 		minColumns: 1,
 		gutterX: 15,
 		gutterY: 15,
