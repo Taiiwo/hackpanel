@@ -140,8 +140,8 @@ function getAvaliablePlugins(){
 				$('.container').append(toAdd.markup().fadeIn().append('<div class="loadingclock"></div>'));
 				plugins.add(toAdd);
 				toAdd.get();
-				reloadGrid();
 			}
+			reloadGrid();
 		},
 		'json'
 	);
