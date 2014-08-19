@@ -235,12 +235,12 @@ ul {
   background-color: #ffffff;
   text-transform: uppercase;
   font-weight: bold;
-  width: 100px;
-  height: 40px;
+  padding: 10px 30px;
   transition: all .25s;
   -moz-transition: all .25s;
   -webkit-transition: all .25s;
   margin-top: 10px;
+  width: auto;
 }
 
 #eventSubmit:hover {
