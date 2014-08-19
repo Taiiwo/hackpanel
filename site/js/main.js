@@ -133,7 +133,7 @@ function getAvaliablePlugins(){
       //loop through the available plugins and add them to the plugins array
 			for(var i=0;i<data.length;i++){
 				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin").addClass(data[i])});
-				$('.container').append(toAdd.markup().fadeIn());
+				$('.container').append(toAdd.markup().fadeIn().append('<div class="loadingclock"></div>'));
 				plugins.add(toAdd);
 				toAdd.get();
 				reloadGrid();
