@@ -82,9 +82,9 @@ plugin.prototype={
 					$('.' + this.url()).attr('title',this.name());
 					if (data.size[0] > 1 || data.size[1] != 250){
 						$('.' + this.url())
-							.width(data.size[0] * 290 + (data.size[0] - 1) * 15)
+							.animate({width: data.size[0] * 290 + (data.size[0] - 1) * 15}, 500)
 							.attr('data-ss-colspan', data.size[0])
-							.height(40 + data.size[1])
+							.animate({height:40 + data.size[1]}, 300);
 						reloadGrid();
 
 					}
@@ -133,7 +133,7 @@ function getAvaliablePlugins(){
       //loop through the available plugins and add them to the plugins array
 			for(var i=0;i<data.length;i++){
 				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin").addClass(data[i])});
-				$('.container').append(toAdd.markup());
+				$('.container').append(toAdd.markup().fadeIn());
 				plugins.add(toAdd);
 				toAdd.get();
 				reloadGrid();
