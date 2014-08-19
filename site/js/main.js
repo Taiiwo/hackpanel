@@ -237,6 +237,7 @@ $("#search").bind('input',function(){
 //load plugins when search term is submitted
 $("#searchBox").submit(function(e){
   e.preventDefault();
+  $('.container').empty();
   getAvaliablePlugins();
   var searchTerm=$(this).find("#search").val()
   var found=false;
