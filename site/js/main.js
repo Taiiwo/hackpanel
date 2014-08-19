@@ -78,13 +78,17 @@ plugin.prototype={
           //create the plugin box and populate
 					var markup=$("<div/>").addClass("plugin").addClass(this.url())
 						.append($("<header>|||<span class='pluginName'>"+this.name()+"</span></header>"))
-						.append(data.markup);
+						.append(
+							$(data.markup)
+								.fadeIn(500)
+								.css('display', '')
+						);
 					$('.' + this.url()).attr('title',this.name());
 					if (data.size[0] > 1 || data.size[1] != 250){
 						$('.' + this.url())
 							.animate({width: data.size[0] * 290 + (data.size[0] - 1) * 15}, 200)
 							.attr('data-ss-colspan', data.size[0])
-							.animate({height:40 + data.size[1]}, 200);
+							.animate({height:40 + data.size[1]}, 200)
 						reloadGrid();
 
 					}
