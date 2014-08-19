@@ -42,7 +42,7 @@ class twitterPlugin {
 			$item = array();
 			$item[] = $tweet->user->name;// title
 			$item[] = "https://twitter.com/@" . $tweet->user->screen_name;// link location
-			$item[] = $tweet->user->screen_name;// link title
+			$item[] = '@' . $tweet->user->screen_name;// link title
 			$item[] = htmlifyLinks($tweet->text);// tweet
 			$item[] = strtotime($tweet->created_at);// timestamp
 			$retMe[] = $item;
