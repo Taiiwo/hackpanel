@@ -130,7 +130,7 @@ ul {
 }
 
 .lightbox {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.7);
   position: fixed;
   z-index: 10000;
   width: 100%;
@@ -230,8 +230,8 @@ ul {
 
 #eventSubmit {
   text-align: center;
-  border: 3px solid #03a9f4;
-  color: #03a9f4;
+  border: 3px solid #e00032;
+  color: #e00032;
   background-color: #ffffff;
   text-transform: uppercase;
   font-weight: bold;
@@ -240,12 +240,11 @@ ul {
   transition: all .25s;
   -moz-transition: all .25s;
   -webkit-transition: all .25s;
-  margin: 0 auto;
-  display: block;
+  margin-top: 10px;
 }
 
 #eventSubmit:hover {
-  background-color: #03a9f4;
+  background-color: #e00032;
   color: #ffffff;
   cursor: pointer;
 }
@@ -255,10 +254,9 @@ ul {
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
   margin: -35px;
-  background-color: #03a9f4;
-  box-shadow: 0px 2px 3px #7f8c8d;
-  color: #ffffff;
-  padding: 5px;
+  background-color: #ffffff;
+  border: 3px solid #e00032;
+  color: #e00032;
   float: right;
   width: 30px;
   height: 30px;
@@ -273,6 +271,8 @@ ul {
 
 #addClose:hover, #settingsClose:hover {
   cursor: pointer;
+  background-color: #e00032;
+  color: #ffffff;
 }
 
 #main-content {
@@ -280,13 +280,11 @@ ul {
 }
 
 .container {
-  transition: all .6s;
-  -moz-transition: all .6s;
-  -webkit-transition: all .6s;
   position: relative;
   max-width: 930px;
   margin: auto;
 }
+
 .plugin {
   height: 290px;
   position: absolute;
