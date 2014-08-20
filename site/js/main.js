@@ -135,6 +135,7 @@ function getAvaliablePlugins(){
 		{},
 		function(data){
       //loop through the available plugins and add them to the plugins array
+			$('.container').empty();
 			for(var i=0;i<data.length;i++){
 				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin").addClass(data[i])});
 				$('.container').append(toAdd.markup().fadeIn().append('<div class="loadingclock"></div>'));
@@ -147,14 +148,21 @@ function getAvaliablePlugins(){
 	);
 }
 function reloadGrid(){
-	$('.container').shapeshift({
-		minColumns: 1,
-		gutterX: 15,
-		gutterY: 15,
-		handle: "header",
-		centerWhileDragging: false,
-		animationSpeed: 300
-	});
+	var options = {
+                minColumns: 2,
+                gutterX: 15,
+                gutterY: 15,
+                handle: "header",
+                centerWhileDragging: false,
+                animationSpeed: 300
+	};
+	if (!is_desktop){
+		options['minColumns'] = 1;
+		$('.plugin').width(290)
+			.attr('data-ss-colspan', 1);
+	}
+
+	$('.container').shapeshift(options);
 }
 //initialise all the plugins
 
@@ -241,7 +249,6 @@ $("#search").bind('input',function(){
 //load plugins when search term is submitted
 $("#searchBox").submit(function(e){
   e.preventDefault();
-  $('.container').empty();
   getAvaliablePlugins();
   var searchTerm=$(this).find("#search").val()
   var found=false;
@@ -270,4 +277,19 @@ $("#searchBox").submit(function(e){
   $("#search").blur();
   $("#search").focus(function(){$(".search-items").slideDown()});
 })
+
+var is_desktop = true;
+$( window ).resize(function (){
+	if (document.body.clientWidth < 614){ 
+		is_desktop = false;
+		reloadGrid();
+	}
+	else if (document.body.clientWidth >= 614 && is_desktop == false){
+		is_desktop = true;
+		getAvaliablePlugins();
+		reloadGrid();
+	}
+});
+
+
 });
