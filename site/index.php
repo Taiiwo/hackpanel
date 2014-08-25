@@ -20,12 +20,16 @@
   <script>
     //alpha/beta bar script
   $(function(){
-     var hash = '<?php
+     var hash = <?php
                   //read first line of ORIG_HEAD file
-                  $gitLine=fopen("../.git/ORIG_HEAD","r");
-                  echo trim(fgets($gitLine));
+                  $refLocationFile=fopen("../.git/HEAD","r");
+                  $refLocation=array();
+                  preg_match("/(ref\:\ )(.*)/",fgets($refLocationFile),$refLocation);
+                  fclose($refLocationFile);
+                  $gitLine=fopen("../.git/".$refLocation[2],"r");
+                  echo "'".trim(fgets($gitLine))."'";
                   fclose($gitLine);
-                 ?>';
+                 ?>;
      $('.version').text(hash);
      $('.version').attr("target","_blank");
      $('.version').attr("href","https://github.com/Taiiwo/hackpanel/commit/" + hash);
