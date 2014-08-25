@@ -1,22 +1,6 @@
 $(function(){
 var hackathon = [];
-var log = $('.tiles');
-
-//creates the drag and drop grid
-var pluginsGrid = $(".tiles").gridster({
-       	widget_base_dimensions: [290, 290],
-       	widget_margins: [15, 15],
-       	autogrow_cols: true,
-	min_cols: 1,
-	max_cols: 3,
-	draggable: {
-		handle: 'header,header>*'
-	},
-       	resize: {
-       		enabled: true
-       	}
-}).data('gridster');
-$(".tiles").fadeOut(10);
+var log = $('.container');
 
 //this is where the plugins are stored
 var plugins = [];
@@ -92,24 +76,24 @@ plugin.prototype={
 				success:function(data){
 					this.name(data.title);
           //create the plugin box and populate
-					var markup=$("<ln/>").addClass("plugin").addClass(this.url())
+					var markup=$("<div/>").addClass("plugin").addClass(this.url())
 						.append($("<header>|||<span class='pluginName'>"+this.name()+"</span></header>"))
-						.append(data.markup);
-
-          //place plugin
-					for ( var ind = 0; ind < pluginsGrid.$widgets.length; ind++){
-						if ( pluginsGrid.$widgets.eq(ind).attr('class').split(' ')[1] == this.url()){
-							/* If 'move_widget' was a thing that gridster would let you do,
-								this code would fix plugins sometimes not resizing, but
-								it's obviously completely untested.
-							if ((pluginsGrid.$widgets.eq(ind).attr('data-col') - 1) + data.size[0] > 3{
-								pluginsGrid.move_widget(pluginsGrid.$widgets.eq(ind), -(3 - ((pluginsGrid.$widgets.eq(ind).attr('data-col') - 1) + data.size[0]));
-							}*/
-							pluginsGrid.resize_widget(pluginsGrid.$widgets.eq(ind), data.size[0], data.size[1]);
-						}
-					};
-
+						.append(
+							$(data.markup)
+								.fadeIn(500)
+								.css('display', '')
+						);
 					$('.' + this.url()).attr('title',this.name());
+					if (data.size[0] > 1 || data.size[1] != 250){
+						$('.' + this.url())
+							.animate({width: data.size[0] * 290 + (data.size[0] - 1) * 15}, 200)
+							.attr('data-ss-colspan', data.size[0])
+							.animate({height:40 + data.size[1]}, 200)
+						reloadGrid();
+
+					}
+          //resize plugin
+					
 
           //insert plugin box into the page markup
 					this.markup().empty();
@@ -151,19 +135,36 @@ function getAvaliablePlugins(){
 		{},
 		function(data){
       //loop through the available plugins and add them to the plugins array
+			$('.container').empty();
 			for(var i=0;i<data.length;i++){
-				var toAdd=new plugin({url:data[i],markup:$("<ln/>").addClass("plugin").addClass(data[i])});
-				console.log(pluginsGrid);
-				tiles[data[i]] = pluginsGrid.add_widget(toAdd.markup());
+				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin").addClass(data[i])});
+				$('.container').append(toAdd.markup().fadeIn().append('<div class="loadingclock"></div>'));
 				plugins.add(toAdd);
 				toAdd.get();
 			}
+			reloadGrid();
 		},
 		'json'
 	);
 }
+function reloadGrid(){
+	var options = {
+                minColumns: 2,
+                gutterX: 15,
+                gutterY: 15,
+                handle: "header",
+                centerWhileDragging: false,
+                animationSpeed: 300
+	};
+	if (!is_desktop){
+		options['minColumns'] = 1;
+		$('.plugin').width(290)
+			.attr('data-ss-colspan', 1);
+	}
+
+	$('.container').shapeshift(options);
+}
 //initialise all the plugins
-getAvaliablePlugins();
 
 
 
@@ -248,6 +249,7 @@ $("#search").bind('input',function(){
 //load plugins when search term is submitted
 $("#searchBox").submit(function(e){
   e.preventDefault();
+  getAvaliablePlugins();
   var searchTerm=$(this).find("#search").val()
   var found=false;
 
@@ -260,6 +262,7 @@ $("#searchBox").submit(function(e){
   }
   if(found){
     hackathon=search.options[i];
+    $('#alphaBar').fadeOut(500);
   }
   else{
     //otherwise just let it search itself
@@ -270,8 +273,23 @@ $("#searchBox").submit(function(e){
   }
 
   //animate tiles in and autocomplete out
-  $(".tiles").fadeIn(500);
+  $(".container").fadeIn(500);
   $("#search").blur();
   $("#search").focus(function(){$(".search-items").slideDown()});
 })
+
+var is_desktop = true;
+$( window ).resize(function (){
+	if (document.body.clientWidth < 614){ 
+		is_desktop = false;
+		reloadGrid();
+	}
+	else if (document.body.clientWidth >= 614 && is_desktop == false){
+		is_desktop = true;
+		getAvaliablePlugins();
+		reloadGrid();
+	}
+});
+
+
 });

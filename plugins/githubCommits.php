@@ -1,10 +1,11 @@
-<?php //This class MUST be called the same as the file name without ".php" 
+<?php //This class MUST be called the same as the file name without ".php"
 class githubCommits {
 	//A short description of your plugin
 	public $title = "Live Git Commits";
 	public $scripts;
         //This sets whether you want the plugin to be continually updated.
         public $update = false;
+	public $size = array(1, 350);
 	// This function is run once at plugin initialisation
 	// External calls to APIs where the data should not change
 	// should be run here to help reduce update time.
@@ -34,7 +35,7 @@ class githubCommits {
 							<a href='".$commit->html_url."'>".$git_user."/".$git_repo."</a>
 						</div>
 						<div class='commitFooter'>
-							<span class='commitMessage'>".$commit->commit->message."</span>
+							<span class='commitMessage'>".$commit->commit->message."</span><br >
 							<span class='commitTime'>".$commitTime->format("d-m-Y H:i:s")."</span>
 						</div>
 					</li>";

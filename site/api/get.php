@@ -38,7 +38,7 @@ function error_display($e){
 
 require_once "../../lib/searchTerm.php";
 if (array_key_exists('searchTerm',$_POST) && $_POST['searchTerm'] != ''){
-	$searchTerm = preg_replace("/^\w{140}$/", "", $_POST['searchTerm']);
+	$searchTerm = $_POST['searchTerm'];
 }
 else {//Hardcoded default searchterm
 	$searchTerm = "Young Rewired State";
@@ -62,6 +62,7 @@ $thisClass = new $className;
 if (file_exists("../../plugins/js/$className.js")){
 	$thisClass->scripts[] = "/*Injected*/\n".file_get_contents("../../plugins/js/$className.js");
 }
+//fetch css if exists
 if (file_exists("../../plugins/css/$className.css")){
 	$style = file_get_contents("../../plugins/css/$className.css");
 }
@@ -74,7 +75,7 @@ if (property_exists($thisClass, "size")){
 	$size = $thisClass->size;
 }
 else {
-	$size = array(1, 1);
+	$size = array(1, 250);
 }
 $returnObj = array("last_updated"=>time(),
 			"update"=>$thisClass->update,
