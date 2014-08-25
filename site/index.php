@@ -16,12 +16,20 @@
   <script src="https://www.google.com/jsapi" type="text/javascript"></script>
   <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
   <script>google.load("visualization", "1", {packages:["corechart"]});</script>
+
   <script>
-     $.getJSON("https://api.github.com/repos/taiiwo/hackpanel/commits", function(data) {
-       var hash = data[0].sha;
-       $('.version').text(hash);
-       $('.version').attr("href","https://github.com/Taiiwo/hackpanel/commit/" + hash)
-     });
+    //alpha/beta bar script
+  $(function(){
+     var hash = '<?php
+                  //read first line of ORIG_HEAD file
+                  $gitLine=fopen("../.git/ORIG_HEAD","r");
+                  echo trim(fgets($gitLine));
+                  fclose($gitLine);
+                 ?>';
+     $('.version').text(hash);
+     $('.version').attr("target","_blank");
+     $('.version').attr("href","https://github.com/Taiiwo/hackpanel/commit/" + hash);
+  });
   </script>
 </head>
   <body>
