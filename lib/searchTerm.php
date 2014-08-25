@@ -1,6 +1,6 @@
 <?php
 function getSearchAlias($term,$keys){
-	//check if searches file exists
+	//check if hackathon file exists
 	if(!file_exists("../../site/api/hackathons.json"))return false;
 	$hackathonsJSON=file_get_contents("../../site/api/hackathons.json");
 	$hackathons=json_decode($hackathonsJSON,true);
