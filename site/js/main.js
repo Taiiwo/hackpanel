@@ -93,7 +93,7 @@ plugin.prototype={
 
 					}
           //resize plugin
-					
+
 
           //insert plugin box into the page markup
 					this.markup().empty();
@@ -147,6 +147,9 @@ function getAvaliablePlugins(){
 		'json'
 	);
 }
+function recordPLuginLocations(e, $selected){
+	
+}
 function reloadGrid(){
 	var options = {
                 minColumns: 2,
@@ -162,7 +165,9 @@ function reloadGrid(){
 			.attr('data-ss-colspan', 1);
 	}
 
+	$('.container').unbind('shapeshift',recordPluginLocations);
 	$('.container').shapeshift(options);
+	$('.container').on('shapeshift',recordPluginLocations);
 }
 //initialise all the plugins
 
@@ -280,7 +285,7 @@ $("#searchBox").submit(function(e){
 
 var is_desktop = true;
 $( window ).resize(function (){
-	if (document.body.clientWidth < 614){ 
+	if (document.body.clientWidth < 614){
 		is_desktop = false;
 		reloadGrid();
 	}
