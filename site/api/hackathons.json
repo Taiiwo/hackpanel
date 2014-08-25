@@ -1,0 +1,32 @@
+[
+	{
+		"default": "Young Rewired State",
+		"irc": "#yrs",
+		"image": "../img/youngRewiredState.jpg",
+		"description": "Young Rewired State is an independent global network of kids aged 18 and under who have taught themselves to program computers. We introduce these children to like-minded peers at events around the world where they use freely available open data to make websites, apps and algorithms to solve real world challenges.",
+		"startDate": "28/07/2014",
+		"endDate": "03/08/2014",
+		"twitterAccount": "@youngrewired",
+		"lat": 50.375715,
+		"lng": -4.139280,
+		"twitterHashtags": [
+			"#yrsfoc",
+			"#yrs2014"
+		]
+	},
+	{
+		"default": "Test Hack",
+		"irc": "#test",
+		"image": "../img/testHack.jpg",
+
+		"description": "An event.",
+		"startDate": "25/12/2014",
+		"endDate": "01/01/2015",
+		"twitterAccount": "@testHack",
+		"lat": 0,
+		"lng": 0,
+		"twitterHashtags": [
+			"#testhack"
+		]
+	}
+]
