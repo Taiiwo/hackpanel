@@ -172,7 +172,7 @@ var search={
 	options:[],
   //gets the known events from the server
 	loadJSON:function(){
-		$.ajax("api/searches.json",{
+		$.ajax("api/hackathons.json",{
 			dataType:'json',
 			success:function(data){
 				search.options=data;

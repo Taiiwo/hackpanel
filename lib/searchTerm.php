@@ -1,8 +1,8 @@
 <?php
 function getSearchAlias($term,$keys){
 	//check if searches file exists
-	if(!file_exists("../../site/api/searches.json"))return false;
-	$hackathonsJSON=file_get_contents("../../site/api/searches.json");
+	if(!file_exists("../../site/api/hackathons.json"))return false;
+	$hackathonsJSON=file_get_contents("../../site/api/hackathons.json");
 	$hackathons=json_decode($hackathonsJSON,true);
 	$found = false;
 	//see if we have the hackathon already
@@ -17,7 +17,7 @@ function getSearchAlias($term,$keys){
 		//We don't have information on that hackathon yet, so let's search for it!
 		$hackathon = getEventDetails($term);
 		if ($hackathon) {
-			//put some stuff here to add $hackathon to searches.json
+			//put some stuff here to add $hackathon to hackathons.json
 		}
 		else {
 			//no results found, die
