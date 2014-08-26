@@ -14,19 +14,19 @@ plugins.add=function(plugin){
 	}
 	plugins.push(plugin);
 }
-plugins.order=Array();
-plugins.recordOrder=function(e, $selected){
-	plugins.order=Array();
-	var plugins=$($selected).parent().children();
-	for(var i=0;i<plugins.length;i++){
-		pluginsOrder[i]=plugins.eq(i).data("plugin-name");
+plugins.order=function(order){
+	if(order!==undefined){
+		$.cookie("plugin-order",order,{expires:100*365});
 	}
+	return $.cookie("plugin-order");
 }
-plugins.saveOrder=function(){
-	$.cookie("plugin-order",plugins.order,{expires:100*365});
-}
-plugins.loadOrder=function(){
-	plugins.order=$.cookie("plugin-order");
+plugins.recordOrder=function(e, selected){
+	var order=Array();
+	var $plugins=$(selected).parent().children();
+	for(var i=0;i<$plugins.length;i++){
+		order[i]=$plugins.eq(i).data("plugin-name");
+	}
+	plugins.order(order);
 }
 
 //The plugin object
@@ -178,9 +178,9 @@ function reloadGrid(){
 			.attr('data-ss-colspan', 1);
 	}
 
-	$('.container').unbind('ss-rearranged',recordPluginLocations);
+	$('.container').unbind('ss-rearranged',plugins.recordOrder);
 	$('.container').shapeshift(options);
-	$('.container').on('ss-rearranged',recordPluginLocations);
+	$('.container').on('ss-rearranged',plugins.recordOrder);
 }
 //initialise all the plugins
 

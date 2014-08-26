@@ -12,7 +12,7 @@
   <script src="js/shapeshift.js" type="text/javascript"></script>
   <script src="js/main.js" type="text/javascript"></script>
   <script src="js/lightboxes.js" type="text/javascript"></script>
-  <script src="/path/to/jquery.cookie.js"></script>
+  <script src="js/jQuery.cookie.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmP4F7uI_pUSW9duPY6xQjoRb0iJgcuic"></script>
   <script src="https://www.google.com/jsapi" type="text/javascript"></script>
   <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
