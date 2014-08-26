@@ -20,6 +20,12 @@ plugins.order=function(order){
 	}
 	return $.cookie("plugin-order");
 }
+//custom sort for getting plugins in the correct order
+plugins.sortCompare=function(a,b){
+	var aLocation=plugins.order().indexOf(a.url()),
+			bLocation=plugins.order().indexOf(b.url())
+	return aLocation-bLocation
+}
 plugins.recordOrder=function(e, selected){
 	var order=Array();
 	var $plugins=$(selected).parent().children();
@@ -153,9 +159,13 @@ function getAvaliablePlugins(){
 			$('.container').empty();
 			for(var i=0;i<data.length;i++){
 				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin").addClass(data[i]).data("plugin-name",data[i])});
-				$('.container').append(toAdd.markup().fadeIn().append('<div class="loadingclock"></div>'));
 				plugins.add(toAdd);
 				toAdd.get();
+			}
+			plugins.sort(plugins.sortCompare);
+			for(var i=0;i<plugins.length;i++){
+				toAdd=plugins[i];
+				$('.container').append(toAdd.markup().fadeIn().append('<div class="loadingclock"></div>'));
 			}
 			reloadGrid();
 		},
