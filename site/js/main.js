@@ -137,7 +137,7 @@ function getAvaliablePlugins(){
       //loop through the available plugins and add them to the plugins array
 			$('.container').empty();
 			for(var i=0;i<data.length;i++){
-				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin").addClass(data[i])});
+				var toAdd=new plugin({url:data[i],markup:$("<div/>").addClass("plugin").addClass(data[i]).data("plugin-name",data[i])});
 				$('.container').append(toAdd.markup().fadeIn().append('<div class="loadingclock"></div>'));
 				plugins.add(toAdd);
 				toAdd.get();
@@ -147,8 +147,13 @@ function getAvaliablePlugins(){
 		'json'
 	);
 }
-function recordPLuginLocations(e, $selected){
-	
+var pluginsOrder=Array();
+function recordPluginLocations(e, $selected){
+	pluginsOrder=Array();
+	var plugins=$($selected).parent().children()
+	for(var i=0;i<plugins.length;i++){
+		pluginsOrder[i]=plugins.eq(i).data("plugin-name");
+	}
 }
 function reloadGrid(){
 	var options = {
@@ -165,9 +170,9 @@ function reloadGrid(){
 			.attr('data-ss-colspan', 1);
 	}
 
-	$('.container').unbind('shapeshift',recordPluginLocations);
+	$('.container').unbind('ss-rearranged',recordPluginLocations);
 	$('.container').shapeshift(options);
-	$('.container').on('shapeshift',recordPluginLocations);
+	$('.container').on('ss-rearranged',recordPluginLocations);
 }
 //initialise all the plugins
 
