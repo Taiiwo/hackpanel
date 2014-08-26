@@ -1,6 +1,7 @@
 $(function(){
 var hackathon = [];
 var log = $('.container');
+$.cookie.json=true;
 
 //this is where the plugins are stored
 var plugins = [];
@@ -12,6 +13,20 @@ plugins.add=function(plugin){
 		}
 	}
 	plugins.push(plugin);
+}
+plugins.order=Array();
+plugins.recordOrder=function(e, $selected){
+	plugins.order=Array();
+	var plugins=$($selected).parent().children();
+	for(var i=0;i<plugins.length;i++){
+		pluginsOrder[i]=plugins.eq(i).data("plugin-name");
+	}
+}
+plugins.saveOrder=function(){
+	$.cookie("plugin-order",plugins.order,{expires:100*365});
+}
+plugins.loadOrder=function(){
+	plugins.order=$.cookie("plugin-order");
 }
 
 //The plugin object
@@ -147,14 +162,7 @@ function getAvaliablePlugins(){
 		'json'
 	);
 }
-var pluginsOrder=Array();
-function recordPluginLocations(e, $selected){
-	pluginsOrder=Array();
-	var plugins=$($selected).parent().children()
-	for(var i=0;i<plugins.length;i++){
-		pluginsOrder[i]=plugins.eq(i).data("plugin-name");
-	}
-}
+
 function reloadGrid(){
 	var options = {
                 minColumns: 2,
