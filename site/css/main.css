@@ -451,7 +451,7 @@ header span {
 .styledList {
   overflow-y: scroll;
   overflow-x:  hidden;
-  height: calc(100% - 50px);
+  height: 290px;
   width: 100%;
   padding-bottom: 10px;
 }
