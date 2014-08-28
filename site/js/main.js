@@ -165,7 +165,7 @@ function getAvaliablePlugins(){
 			plugins.sort(plugins.sortCompare);
 			for(var i=0;i<plugins.length;i++){
 				toAdd=plugins[i];
-				$('.container').append(toAdd.markup().fadeIn().append('<div class="loadingclock"></div>'));
+				$('.container').append(toAdd.markup().fadeIn().append('<div class="spinner"></div>'));
 			}
 			reloadGrid();
 		},
