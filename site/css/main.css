@@ -458,6 +458,7 @@ header span {
 
 .styledList li {
    padding: 10px;
+   color: #000000;
  }
 
 .styledList a {
@@ -465,11 +466,11 @@ header span {
 }
 
 .styledList li:nth-child(2n) {
-    background-color: #e00032;
+    background-color: #efefef;
 }
 
 .styledList li:nth-child(2n-1) {
-    background-color: rgba(255,255,255,0.15);
+    background-color: #ffffff;
 }
 
 .spinner {
