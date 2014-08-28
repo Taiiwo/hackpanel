@@ -18,7 +18,8 @@ plugins.order=function(order){
 	if(order!==undefined){
 		$.cookie("plugin-order",order,{expires:100*365});
 	}
-	return $.cookie("plugin-order");
+	var cookie=$.cookie("plugin-order")
+	return (cookie!==undefined)?cookie:Array();
 }
 //custom sort for getting plugins in the correct order
 plugins.sortCompare=function(a,b){
