@@ -39,25 +39,22 @@
 </head>
   <body>
     <div class="lightbox" id="settings">
-      <div id="settingsClose">x</div>
       <div class="content">
+        <div id="settingsClose">X</div>
       </div>
     </div>
     <div class="lightbox" id="add">
-      <div id="addClose">x</div>
       <div class="content">
+        <div id="addClose">X</div>
         <h1 class="addHeading">Add an event.</h1>
         <form method="POST" action"">
-          <label id="nameLabel" for="eventName">Event Name</label><p class="nameRemaining">30 characters remaining</p><input id="eventName" type="text" maxlength="30" placeholder="event name"/>
-          <label id="urlLabel" for="URLcontainer">Event URL</label><div class="URLcontainer"><span>http://hackpa.nl/#</span><input id="eventURL" type="url" placeholder="my-event"/></div>
-          <label id="descriptionLabel" for="eventDescription">Event Description</label><p class="descRemaining">350 characters remaining</p><textarea id="eventDescription" placeholder="event description" maxlength="350"></textarea>
+          <label for="eventName">Event Name</label><input id="eventName" type="text" placeholder="event name"/>
+          <label for="eventDescription">Event Description</label><textarea id="eventDescription" placeholder="event description" maxlength="350"></textarea>
           <div class="dates">
             <div class="startDate"><label for="eventDate">Starts</label><input id="eventDate" type="date"/><input id="eventTime" type="time"/></div>
             <div class="endDate"><label for="eventDate">Ends</label><input id="eventDate" type="date"/><input id="eventTime" type="time"/></div>
           </div>
-          <label id="imageLabel" for="eventImage">Event Image</label><input id="imageInput" type="file"/><button id="imageButton">Select an image</button><p class="imagePath"></p>
-          <div id="colorPicker"><label for="color1">Page color</label><input id="color1" value="#e00032" type="color"/></div>
-          <div id="colorPicker"><label for="color2">Accent color</label><input id="color2" value="#03a9f4" type="color"/></div>
+          <label for="coverImage">Cover Image</label><input id="coverImage" type="file"/>
           <input id="eventSubmit" type="submit"/>
         </form>
       </div>
@@ -67,7 +64,7 @@
       <h1 class="logo">HackPanel</h1>
       <div id="header-elements">
         <form id="searchBox" action="" method="GET">
-          <input id="search" placeholder="search for an event" type="search" name="search" autocomplete="off">
+          <input id="search" placeholder="search for an event" type="text" name="search" autocomplete="off">
           <div class="items-container">
             <div class="search-items">
               <!-- EVENTS ADDED HERE -->
