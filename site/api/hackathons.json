@@ -12,7 +12,8 @@
 		"twitterHashtags": [
 			"#yrsfoc",
 			"#yrs2014"
-		]
+		],
+		"phoneNumber": "+447934767868"
 	},
 	{
 		"default": "Test Hack",
@@ -27,6 +28,7 @@
 		"lng": 0,
 		"twitterHashtags": [
 			"#testing"
-		]
+		],
+		"phoneNumber": "+447934767868"
 	}
 ]
