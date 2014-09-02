@@ -85,7 +85,53 @@ plugin.prototype={
 			return this;
 		}
 	},
+	populate:function(data){
+		this.name(data.title);
+		//create the plugin box and populate
+		var markup=$("<div/>").addClass("plugin").addClass(this.url())
+			.append($("<header>|||<span class='pluginName'>"+this.name()+"</span></header>"))
+			.append(
+				$(data.markup)
+					.fadeIn(500)
+					.css('display', '')
+			);
+		$('.' + this.url()).attr('title',this.name());
+		if (data.size[0] > 1 || data.size[1] != 250){
+			$('.' + this.url())
+				.animate({width: data.size[0] * 290 + (data.size[0] - 1) * 15}, 200)
+				.attr('data-ss-colspan', data.size[0])
+				.animate({height:40 + data.size[1]}, 200)
+			reloadGrid();
 
+		}
+		//resize plugin
+
+
+		//insert plugin box into the page markup
+		this.markup().empty();
+		this.markup().append(markup.contents());
+		if ( data.style != 'null' ) {
+			$("head").append("<style type='text/css'>"+data.style+"</style>");
+		}
+
+		//If data.scripts is a non-null array
+		if(typeof(data.scripts)==typeof([])&data.scripts!=null){
+			//loop through each script
+			for(var i=0;i<data.scripts.length;i++){
+				//if /*Injected*/ is at the start of this array element
+				if(data.scripts[i].match(/\/\*Injected\*\//) != null){
+					//Add the script to the HTML with script tags
+					$("head").append("<script type='text/javscript'>"+data.scripts[i]+"</script>");
+				}
+				else{
+					if($("head>script[src='"+data.scripts[i]+"']").length<0){
+						//only add if if doen't exist
+						$("head").append($("<script type='text/javascript'>").attr("src",data.scripts[i]));
+					}
+				}
+			}
+		}
+	},
   //the update function of the plugin
 	get:function(){
     //fetch the latest plugin info from the server
@@ -95,51 +141,32 @@ plugin.prototype={
 					plugin:this.url(),
 					searchTerm:hackathon.default
 				},
-				success:function(data){
-					this.name(data.title);
-          //create the plugin box and populate
-					var markup=$("<div/>").addClass("plugin").addClass(this.url())
-						.append($("<header>|||<span class='pluginName'>"+this.name()+"</span></header>"))
-						.append(
-							$(data.markup)
-								.fadeIn(500)
-								.css('display', '')
-						);
-					$('.' + this.url()).attr('title',this.name());
-					if (data.size[0] > 1 || data.size[1] != 250){
-						$('.' + this.url())
-							.animate({width: data.size[0] * 290 + (data.size[0] - 1) * 15}, 200)
-							.attr('data-ss-colspan', data.size[0])
-							.animate({height:40 + data.size[1]}, 200)
-						reloadGrid();
-
-					}
-          //resize plugin
-
-
-          //insert plugin box into the page markup
-					this.markup().empty();
-					this.markup().append(markup.contents());
-					if ( data.style != 'null' ) {
-						$("head").append("<style type='text/css'>"+data.style+"</style>");
-					}
-
-					//If data.scripts is a non-null array
-					if(typeof(data.scripts)==typeof([])&data.scripts!=null){
-						//loop through each script
-						for(var i=0;i<data.scripts.length;i++){
-							//if /*Injected*/ is at the start of this array element
-							if(data.scripts[i].match(/\/\*Injected\*\//) != null){
-								//Add the script to the HTML with script tags
-								$("head").append("<script type='text/javscript'>"+data.scripts[i]+"</script>");
-							}
-							else{
-								if($("head>script[src='"+data.scripts[i]+"']").length<0){
- 									//only add if if doen't exist
-									$("head").append($("<script type='text/javascript'>").attr("src",data.scripts[i]));
- 								}
-							}
+				success:this.populate,
+				error:function(data){
+					var errors=data.responseText.match(/(This plugin is broken: <table>(.|\n)*<\/table>)/gi);
+					if(errors.length>0){
+						var newData={
+							title:this.url(),
+							markup:$("<div class='loadError'/>").text("This plugin failed to load!")
+											.append("<br/>")
+											.append($('<h3 id="suggestion"/>')
+												.append($("<input type='button' value='Reload'/>").click(this,
+													function(passed){
+														passed.data.get();
+													}
+												))
+												.append($("<input type='button' value='Remove'/>").click(this,
+													function(passed){
+														passed.data.remove();
+													}
+												))
+											),
+							size:Array(1,150),
+							update:false,
+							style:Array(),
+							scripts:Array()
 						}
+						this.populate(newData);
 					}
 				},
 				type:"POST",
@@ -147,6 +174,11 @@ plugin.prototype={
 				context:this
 			}
 		);
+	},
+	remove: function(){
+		this.markup().remove();
+		$(".container").trigger("ss-rearrange");
+		$(".container").trigger("ss-rearranged");
 	}
 }
 

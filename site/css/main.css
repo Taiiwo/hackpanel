@@ -404,6 +404,35 @@ ul {
   box-shadow: 0px 2px 10px #7f8c8d;
   float: left;
 }
+.loadError{
+  text-align: center;
+}
+.loadError input {
+  border: solid 3px #ffffff;
+  background: none;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 10px;
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 auto;
+  display: block;
+  margin-top: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.loadError h3 {
+  padding: 10px;
+}
+
+.loadError input:hover {
+  background-color: #ffffff;
+  color: #e00032;
+}
+
 
 header {
   padding: 10px;
