@@ -5,7 +5,7 @@ class pluginTemplate {
 	public $title = "The Template Plugin";
 	//an array of file locations for scripts you want to load
 	public $scripts = array();
-	public $size = array(1, 80);
+	public $size = array(1, 250);
 	//This sets whether you want the plugin to be continually updated.
 	public $update = false;
 	// This function is run once at plugin initialisation

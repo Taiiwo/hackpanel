@@ -7,7 +7,7 @@ class ideaGenerator {
 	public $scripts = array();
 	//This sets whether you want the plugin to be continually updated.
 	public $update = false;
-	public $size = array(1, 200);
+	public $size = array(1, 250);
 	// This function is run once at plugin initialisation
 	// External calls to APIs where the data should not change
 	// should be run here to help reduce update time.

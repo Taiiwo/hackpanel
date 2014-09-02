@@ -1,0 +1,65 @@
+#twilioPlugin {
+  background-color: #ffffff;
+  height: 250px;
+}
+
+#twilioPlugin h1 {
+  color: #000000;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+}
+
+#theirName, #theirPhoneNumber {
+  width: 250px;
+  margin: 5px 20px;
+  height: 20px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: dotted 1px #bdc3c7;
+  transition: all .25s;
+  -moz-transition: all .25s;
+  -webkit-transition: all .25s;
+}
+
+#theirMessage {
+  resize: none;
+  width: 250px;
+  margin: 5px 20px;
+  height: 80px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: dotted 1px #bdc3c7;
+  transition: all .25s;
+  -moz-transition: all .25s;
+  -webkit-transition: all .25s;
+}
+
+#theirName:focus, #theirPhoneNumber:focus, #theirMessage:focus {
+  border-bottom: dotted 1px #e00032;
+}
+
+#textSubmit {
+  width: 90px;
+  height: 28px;
+  margin: 10px 0px 0px 20px;
+  border: none;
+  background-color: #e00032;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+}
+
+#textSubmit:hover {
+  opacity: 0.8;
+}
+
+.poweredTwilio img {
+  width: 150px;
+  float: right;
+  display: inline;
+  margin-right: 20px;
+  margin-top: -28px;
+}

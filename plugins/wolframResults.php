@@ -1,11 +1,11 @@
-<?php //This class MUST be called the same as the file name without ".php" 
+<?php //This class MUST be called the same as the file name without ".php"
 class wolframResults {
 	//A short description of your plugin
-	public $title = "Wolfram|Alpha";
+	public $title = "Wolfram Alpha";
 	public $scripts;
         //This sets whether you want the plugin to be continually updated.
         public $update = false;
-	public $size = array(1, 150);
+	public $size = array(1, 250);
 	// This function is run once at plugin initialisation
 	// External calls to APIs where the data should not change
 	// should be run here to help reduce update time.
